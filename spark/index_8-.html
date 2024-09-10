@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style_8.css">
+        <title>모멘토</title>
+    </head>
+    <body> 
+        <form class="hidden" id="login-form">
+            <input required 
+            maxlength="15"
+            type="text" 
+            placeholder="ID"
+            />
+            <input type="submit" value="Log In">
+        </form>
+        <h2 id="clock">00:00:00</h2>
+        <h1 class="hidden"id="greeting"></h1>
+        <form id="todo-form">
+            <input type="text" placeholder="할일을 쓰고 앤터해요" required/>
+        </form>
+        <ul id="todo-list">
+        </ul>
+        <div id="quote">
+            <span></span>
+            <span></span>
+        </div>
+        <div id="weather">
+            <span></span>
+            <span></span>
+        </div>
+        <script src="greetings_8.js"></script>
+        <script src="clock_8.js"></script>
+        <script src="quotes_8.js"></script>
+        <script src="background_8.js"></script>
+        <script src="todo_8.js"></script>
+        <script src="weather.js"></script>
+    </body>
+</html>
