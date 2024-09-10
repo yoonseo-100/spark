@@ -1,0 +1,103 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: #eff3f7;
+  height: 100%;
+}
+
+html,
+body,
+#potato,
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.loader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movies {
+  display: flex;
+  flex-wrap: wrap; /* 영화들이 한 줄에 꽉 차면 자동으로 다음 줄로 이동 */
+  justify-content: space-between; /* 카드 사이에 일정한 간격 */
+  padding: 50px;
+  padding-top: 70px;
+  width: 80%; /* 화면 너비의 80% 사용 */
+}
+
+.movie {
+  background-color: white;
+  width: 30%; /* 영화 카드의 너비를 설정 */
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
+    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+  transition: transform 0.2s ease-in-out;
+}
+
+.movie:hover {
+  transform: translateY(-10px);
+}
+
+.movie img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+    0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+}
+
+.movie .movie__title {
+  margin: 10px 0;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #2c2c2c;
+  text-align: center;
+}
+
+.movie .movie__year {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.movie .movie__genres {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.movie__genres li {
+  margin-right: 10px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.movie__summary {
+  font-size: 0.85em;
+  line-height: 1.5;
+  color: #777;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* 텍스트를 3줄로 제한 */
+  -webkit-box-orient: vertical;
+}
