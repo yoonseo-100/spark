@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Background</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        img {
+            position: absolute; /* 이미지를 화면에 꽉 차게 설정 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 비율 유지하면서 이미지 맞춤 */
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    const images = ["05_배경화면.jpeg", "06_배경화면.jpeg", "07_배경화면.jpeg"];
+
+    // 랜덤으로 선택된 이미지
+    const chosenImage = images[Math.floor(Math.random() * images.length)];
+
+    // 이미지 엘리먼트 생성
+    const bgImage = document.createElement("img");
+
+    // 이미지 파일 경로 설정
+    bgImage.src = `img/${chosenImage}`;
+
+    // 이미지 엘리먼트를 body에 추가
+    document.body.appendChild(bgImage);
+</script>
+
+</body>
+</html>
+
+
+
