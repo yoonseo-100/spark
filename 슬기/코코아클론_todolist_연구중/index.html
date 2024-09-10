@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentum App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    <div class="container">
+        <h1 id="greeting" class="hidden"></h1>
+        <h2 id="clock">00:00:00</h2>
+        <div id="weather">
+            <span></span> / <span></span>  <!-- 날씨와 위치 -->
+        </div>
+        <div id="temperature">
+            <span></span>
+        </div>
+        <form class="hidden" id="login-form">
+            <input required maxlength="15" type="text" placeholder="What is your name?" />
+            <input type="submit" value="Log In"/>
+        </form>
+        <form id="todo-form">
+            <input type="text" placeholder="Write a To Do and Press Enter" required/>
+        </form>
+        <ul id="todo-list"></ul>
+        <h3 id="quiz-title"></h3>
+
+        <div id="quote">
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- OX 버튼 추가 -->
+        <div id="quiz-buttons">
+            <button id="o-button">O</button>
+            <button id="x-button">X</button>
+        </div>
+
+        <!-- 캐릭터 이미지 -->
+        <div id="character">
+            <img src="img/움직이는 고양이.gif" alt="Character" />
+        </div>
+    </div>
+
+    <script src="js/background.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/greetings.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/temperature.js"></script>
+    <script src="js/todo.js"></script>
+    <script src="js/weather.js"></script>
+</body>
+</html>
+
