@@ -3,19 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
-    <title>Sia's Life</title>
-    <script src="https://kit.fontawesome.com/8ca7ceab09.js" crossorigin="anonymous"></script>
-    <script src="main.js" defer></script>
-    <script src="js/background.js"></script>
-    <script src="js/calendar.js"></script>
-    <script src="js/clock.js"></script>
-    <script src="js/greetings.js"></script>
-    <script src="js/todo.js"></script>
-    <script src="js/weather.js"></script>
-
+    <title>Momentum Quiz App</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             padding: 0;
@@ -27,6 +16,7 @@
             justify-content: center;
             align-items: center;
             position: relative;
+            font-family: Arial, sans-serif;
         }
         .background-overlay {
             position: absolute;
@@ -97,33 +87,6 @@
     </style>
 </head>
 <body>
-   <nav class="navbar">
-        <div class="navbar__logo"> 
-            <i class="fa-brands fa-codepen"></i>
-            <a href = ""> Sia's Life</a>
-        </div>
-
-        <ul class="navbar__menu"> 
-            <li><a href="">Home</a></li>
-            <li><a href="">Gallery</a></li>
-            <li><a href="">Writing</a></li>
-            <li><a href="">Scheduling</a></li>
-            <li><a href="">FAQ</a></li>
-        </ul>
-
-        <ul class="navbar__icons"> 
-            <li><i class="fa-brands fa-dropbox"></i></li>
-            <li><i class="fa-brands fa-twitter"></i></li>
-            <li><i class="fa-solid fa-right-to-bracket"></i></li>
-        </ul>
-
-        <a href="#" class="navbar__toggleBtn">
-            <i class="fa-solid fa-bars"></i>
-        </a>
-        
-    </nav>
-
-
     <!-- 랜덤 이미지 선택 및 배경 추가 -->
     <script>
         const images = ["01_배경화면.jpeg", "02_배경화면.jpeg", "03_배경화면.jpeg", "04_배경화면.jpeg", "05_배경화면.jpeg", "06_배경화면.jpeg", "07_배경화면.jpeg"];
@@ -173,7 +136,12 @@
     
 
     <!-- 각종 스크립트 -->
-
+    <script src="js/background.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/greetings.js"></script>
+    <script src="js/todo.js"></script>
+    <script src="js/weather.js"></script>
 
     <!-- 퀴즈 스크립트 -->
     <script>
