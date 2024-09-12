@@ -1,0 +1,110 @@
+:root {
+    --text-color : #f0f4f5;
+    --background-color: #263343;
+    --accent-color: #d49466;
+}
+
+body {
+    margin: 0;    /*옆에 공백 없앱*/
+    font-family: 'Nerko One'; 
+}
+
+a {
+    text-decoration: none; /*모든 anker tage의 밑줄없앰*/
+    color: var(--text-color);
+}
+
+.navbar {
+    display: flex;   /* 유연하게 변하도록 함*/
+    justify-content: space-between;  /*box 개를 옆으로 나열*/
+    align-items: center;  /*가운데 정렬*/
+    background-color:  var(--background-color);  /*바탕 화면 색깔지정*/
+    padding: 10px 15px;
+}
+
+.navbar__logo{
+    font-size: 24px;
+    color: var(--text-color);
+}
+
+.navbar__logo i{
+    color: var(--accent-color);
+}
+
+.navbar__menu{
+    display: flex;
+    list-style: none;
+    padding-left: 0; /*글씨끼리 뭉쳐있는것을 풀어줌*/
+}
+
+.navbar__menu li{
+    padding: 10px 15px; /*메뉴들 사이에 간격 제공함*/
+}
+
+.navbar__menu li:hover{
+    /*마우스를 가져다 대면 누르는 것과 같은 모습을 부여하는것 */
+    background-color: var(--accent-color) ;
+    border-radius: 4px;
+}
+
+.navbar__icons {
+    list-style: none; /* 기존에 가지고 있던 스타일 없애기*/
+    color: var(--text-color);
+    display: flex;
+    padding-left: 0; /*글씨끼리 뭉쳐있는것을 풀어줌*/
+    
+}
+
+.navbar__icons li {
+    padding: 8px 12px;
+}
+
+.navbar__toogleBtn{
+    display: none; /*화면이 작아졌을 때만 나오도록하기위한 1step*/
+    position: absolute;
+    right: 32px;
+    font-size: 24px;
+    color: var(--accent-color);
+}
+
+/*사이트를 반응형으로 만들때 media를 사용함*/
+/* 문서의 흐름을 빠져나와서 개인적으로 움직이는것 : position-absolute */
+
+@media screen and (max-width:768px) {
+    /*창이 작아지면 메뉴가 가로가 아닌 세로로 구성되도록 하는 기능 */
+    .navbar{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 24px;
+    }
+
+    .navbar__menu{
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .navbar__menu li {
+        width:100%;
+        text-align: center;
+        /*nav bar의 버튼 색 조정 */
+    }
+
+    .navbar__icons {
+
+        display: none;
+        justify-content: center;
+        width: 100%; /*아이콘 가운데로 정렬*/
+    }
+
+    .navbar__toogleBtn {
+        display: block;
+    }
+
+ /*active 일때 변화*/
+    .navbar__menu.active,
+    .navbar__icons.active{
+        display: flex;
+    }
+}
+
