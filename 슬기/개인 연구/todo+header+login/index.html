@@ -93,6 +93,14 @@
             padding: 8px 12px;
         }
 
+        .navbar__icons__login {
+            position: absolute;
+            top: 13px; /* 상단에서 10px */
+            right: 10px; /* 오른쪽에서 10px */
+            padding-left: 10px;
+            z-index: 1100; /* 다른 요소 위로 오도록 설정 */
+        }
+
         .navbar__toogleBtn {
             display: none;
             position: absolute;
@@ -127,7 +135,8 @@
             width: 100%;
         }
 
-        .navbar__toogleBtn {
+        .navbar__toogleBtn,
+        .navbar__icons__login {
              display: block;
         }
 
@@ -227,11 +236,14 @@
         <ul class="navbar__icons"> 
             <li><i class="fa-brands fa-dropbox"></i></li>
             <li><i class="fa-brands fa-twitter"></i></li>
-            <li><i class="fa-solid fa-right-to-bracket"></i></li>
         </ul>
 
         <a href="#" class="navbar__toogleBtn">
             <i class="fa-solid fa-bars"></i>
+        </a>
+         
+        <a href="#" class="navbar__icons__login">
+            <i class="fa-solid fa-right-to-bracket"></i>
         </a>
     </nav>
 
