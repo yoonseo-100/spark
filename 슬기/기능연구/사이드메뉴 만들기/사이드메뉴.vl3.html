@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사이드 메뉴 버전3</title>
+    <style>
+        input#sidebar {
+            display: none;
+        }
+
+        header {
+            background-color: #f5f5f5;
+            position: relative;
+            z-index: 4;
+        }
+
+        header > div {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 60px;
+        }
+
+        header label.menu{
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            background: url('./img/다운로드.jpeg') 0 0 no-repeat;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .comtainer img{
+            max-width: 100%;
+        }
+
+        .sidebar_content{
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background: #999;
+            transition: all .35s;
+            z-index: 5;
+        }
+
+        .sidebar_content > ul {
+            margin: 20px;
+        }
+
+        .sidebar_content > ul > li {
+            border-bottom: 1px solid #ccc;
+            list-style: none;
+        }
+
+        .sidebar_content > ul > li > a {
+            display: inline-block;
+            width: auto;
+            color:#fff;
+            padding: 10px;
+            margin: 10px;
+            background: #f5f5f5;
+        }
+
+        .sidebar_content label[for*='sidebar'] {
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,.8);
+            opacity: 0;
+            visibility:hidden;
+            z-index:1;
+        }
+
+        input#sidebar:checked ~ header label{
+            background-position: -24px 0;
+        }
+        input#sidebar:checked ~ .sidebar_content {
+            right: 0;
+        }
+        input#sidebar:checked ~ .background {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="sidebar">
+    <header>
+        <div>
+            <label for="sidebar" class="menu"></label>
+        </div>
+    </header>
+
+    <div class="container">
+        <img src="./img/다운로드.jpeg">
+    </div>
+    <div class="sidebar_content">
+        <ul>
+            <li><a>메뉴1</a></li>
+            <li><a>메뉴2</a></li>
+            <li><a>메뉴3</a></li>
+            <li><a>메뉴4</a></li>
+            <li><a>메뉴5</a></li>
+            <li><a>메뉴6</a></li>
+        </ul>
+        <label for="sidebar"></label>
+    </div>
+    <label for="sidebar" class="background"></label>
+</body>
+</html>
