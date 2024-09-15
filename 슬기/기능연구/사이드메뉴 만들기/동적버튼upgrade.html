@@ -5,92 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>통합된 움직이는 박스 기능</title>
     <style>
-    input[id="menuicon"] {
-        display: none;
-    }
+    input[id="menuicon"] {display: none; }
 
-    /* 햄버거 버튼 스타일 */
-    input[id="menuicon"] + label {
-        display: block;
-        width: 60px;
-        height: 40px;
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        transition: all .35s;
-        cursor: pointer;
-        z-index: 200; /* 햄버거 버튼 z-index */
-    }
-
-    input[id="menuicon"]:checked + label {
-        right: 300px;
-    }
-
-    input[id="menuicon"] + label span {
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 5px;
-        border-radius: 30px;
-        background: #000;
-        transition: all 0.35s ease;
-    }
-
-    input[id="menuicon"] + label span:nth-child(1) {
-        top: 0;
-    }
-
-    input[id="menuicon"] + label span:nth-child(2) {
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    input[id="menuicon"] + label span:nth-child(3) {
-        bottom: 0;
-    }
-
-    input[id="menuicon"]:checked + label span:nth-child(1) {
-        top: 50%;
-        transform: translateY(-50%) rotate(45deg);
-        background: antiquewhite;
-    }
-
-    input[id="menuicon"]:checked + label span:nth-child(2) {
-        opacity: 0;
-    }
-
-    input[id="menuicon"]:checked + label span:nth-child(3) {
-        bottom: 50%;
-        transform: translateY(50%) rotate(-45deg);
-        background: antiquewhite;
-    }
-
-    /* 사이드바 스타일 */
-    div[class="sidebar"] {
-        width: 300px;
-        height: 100%;
-        background: rgba(135, 206, 250, 0.5); /* 투명한 하늘색 배경 */
-        position: fixed;
-        top: 0;
-        right: -300px;
-        z-index: 500; /* 사이드바 z-index를 크게 설정 */
-        transition: right .35s ease;
-    }
-
-    /* 체크된 상태에서 사이드바 보여주기 */
-    input[id="menuicon"]:checked ~ .sidebar {
-        right: 0; /* 사이드바가 나타나는 위치 설정 */
-    }
-
-    /* 네비게이션 상단 스타일 */
     header {
         width: 100%;
         background: #e5e5e5;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 100; /* 네비게이션 z-index 설정 */
+        z-index: 100; /* 헤더 z-index 높게 설정 */
+        position: relative;
     }
 
     header > div {
@@ -101,7 +22,6 @@
 
     header > div ul.navi {
         font-size: 0;
-        overflow: hidden; /* 플로팅 요소들이 깨지지 않게 설정 */
     }
 
     header > div ul.navi > li {
@@ -122,11 +42,57 @@
         font-weight: 900;
     }
 
-    /* 콘텐츠 영역 */
+    .area_desc {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 20px;
+    }
+
+    .menubtn { 
+        display: block;
+        width: 50px;
+        height: 40px;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        z-index: 1000; /* 햄버거 버튼 z-index를 가장 높게 설정 */
+    }
+
+    .menubtn span{ 
+        display: block;
+        position: absolute;
+        width: 80%;
+        height: 5px;
+        border-radius: 30px;
+        background: #222;
+        transition: all 0.35s;
+    }
+
+    .menubtn span:nth-child(1) {
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%);
+    }
+
+    .menubtn span:nth-child(2) { 
+        top:50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+
+    .menubtn span:nth-child(3) { 
+        bottom: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
     .container {
         width: 100%;
         position: relative;
-        margin-top: 100px; /* 상단 네비게이션 공간 확보 */
     }
 
     .container .contents {
@@ -137,49 +103,77 @@
         background: #f1f1f1;
     }
 
-    .area_desc {
-        position: absolute;
+    .container .sidebar {
+        position: fixed;
+        top: 0;
+        right: -300px;
+        width: 300px;
+        height: 100%;
+        background: #666;
+        border: 1px solid #eee;
+        z-index: 900; /* 사이드바 z-index 설정 */
+        transition: .35s;
+    }
+
+    /* 햄버거 버튼이 클릭되었을 때의 스타일 */
+    input[id="menuicon"]:checked ~ header .menubtn {
+        z-index: 1000;
+    }
+
+    input[id="menuicon"]:checked ~ header .menubtn span:nth-child(1){
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 20px;
+        transform: translate(-50%,-50%) rotate(45deg);
+        background: #fff; /* X 모양의 첫 번째 줄을 하얀색으로 */
+    }
+
+    input[id="menuicon"]:checked ~ header .menubtn span:nth-child(2){
+        left: 50%;
+        transform: translate(-50%,-50%) scale(2);
+        opacity: 0;
+    }
+
+    input[id="menuicon"]:checked ~ header .menubtn span:nth-child(3){
+        bottom: 50%;
+        left: 50%;
+        transform: translate(-50%,50%) rotate(-45deg);
+        background: #fff; /* X 모양의 세 번째 줄을 하얀색으로 */
+    }
+
+    /* 사이드바가 보이는 상태 */
+    input[id="menuicon"]:checked ~ .container .sidebar {
+        right: 0;
     }
 
     </style>
 </head>
 <body>
-    <!-- 네비게이션 영역 -->
-    <header>
-        <div>
-            <ul class="navi">
-                <li class="logo"><a>상단로고영역</a></li>
-                <li><a>메뉴01</a></li>
-                <li><a>메뉴02</a></li>
-                <li><a>메뉴03</a></li>
-                <li><a>메뉴04</a></li>
-                <li><a>메뉴05</a></li>
-            </ul>
+    <input type="checkbox" id="menuicon">
+        <header>
+            <div>
+                <ul class="navi">
+                    <li class="logo"><a>상단로고영역</a></li>
+                    <li><a>메뉴01</a></li>
+                    <li><a>메뉴02</a></li>
+                    <li><a>메뉴03</a></li>
+                    <li><a>메뉴04</a></li>
+                    <li><a>메뉴05</a></li>
+                </ul>
+                <label for="menuicon" class="menubtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+            </div>
+        </header>
 
-            <!-- 햄버거 버튼 -->
-            <input type="checkbox" id="menuicon">
-            <label for="menuicon">
-                <span></span>
-                <span></span>
-                <span></span>
-            </label>
+        <div class="container">
+            <div class="contents">
+                <span class="area_desc">CONTENT영역</span>
+            </div>
+            <div class="sidebar">
+                <span class="area_desc">SIDEBAR영역</span>
+            </div>
         </div>
-    </header>
-
-    <!-- 사이드바 -->
-    <div class="sidebar">
-        <span class="area_desc">SIDEBAR영역</span>
-    </div>
-
-    <!-- 콘텐츠 영역 -->
-    <div class="container">
-        <div class="contents">
-            <span class="area_desc">CONTENT영역</span>
-        </div>
-    </div>
 </body>
 </html>
