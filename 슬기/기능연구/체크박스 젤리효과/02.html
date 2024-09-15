@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .check input{
+            display: none;
+        }
+
+        .check .icon{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: transparent;
+            border: 10px solid #000;
+            border-radius: 5px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .check .icon::before, .check .icon::after{
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 0;
+            background-color: #ff1100;
+            position: absolute;
+            transform-origin: left top;
+            border-radius: 5px;
+        }
+
+        .check .icon::before {
+            top: 40px;
+            left: 0px;
+            transform: rotate(-45deg);
+        }
+
+        .check .icon::after {
+            top: 75px;
+            left: 40spx;
+            transform: rotate(-135deg);
+        }
+
+        .check input:checked ~ .icon {
+            border-color: #ff1100;
+        }
+        .check input:checked ~ .icon::before{
+            height: 45px;
+            transition: all .35s ease;
+        }
+
+        .check input:checked ~ .icon::after{
+            height: 120px;
+            transition: all .35s ease;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <label class="check">
+        <input type="checkbox">
+        <span class="icon"></span>
+    </label>
+</body>
+</html>
