@@ -49,11 +49,11 @@
             align-items: center;
             background-color: #a3a1a4d0;
             padding: 10px 15px;
-            position: fixed; /* Navbar를 상단에 고정 */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 1000; /* Navbar가 다른 콘텐츠보다 위에 있도록 설정 */
+            z-index: 1002;
         }
 
         .navbar__logo {
@@ -95,10 +95,10 @@
         .navbar__icons__login {
             display: flex;
             position: absolute;
-            top: 20px; /* 상단에서 10px */
-            right: 10px; /* 오른쪽에서 10px */
+            top: 20px;
+            right: 10px;
             margin-left: 30px;
-            z-index: 1100; /* 다른 요소 위로 오도록 설정 */
+            z-index: 1100;
         }
 
         .navbar__toogleBtn {
@@ -107,6 +107,44 @@
             right: 32px;
             font-size: 24px;
             color: #1c25c9;
+        }
+
+        /* 반응형 헤더 */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 8px 24px;
+            }
+
+            .navbar__menu {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .navbar__menu li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .navbar__icons {
+                display: none;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .navbar__toogleBtn,
+            .navbar__icons__login {
+                display: block;
+            }
+
+            .navbar__menu.active,
+            .navbar__icons.active,
+            .navbar__icons__login.active {
+                display: flex;
+            }
         }
 
         img {
@@ -166,11 +204,6 @@
             opacity: 0;
         }
 
-        .checkbox .text {
-            margin-left: 5px;
-            transition: text-decoration 0.3s ease;
-        }
-
         .checkbox input:checked ~ .icon {
             border-color: transparent;
             background: #ff1616;
@@ -189,13 +222,39 @@
         }
 
         @keyframes jelly {
-            from { transform: scale(1, 1); }
-            30% { transform: scale(1.25, 0.75); }
-            40% { transform: scale(0.75, 1.25); }
-            50% { transform: scale(1.15, 0.85); }
-            65% { transform: scale(0.95, 1.05); }
-            75% { transform: scale(1.05, 0.95); }
-            to { transform: scale(1, 1); }
+            from { transform: scale(1,1); }
+            30% { transform: scale(1.25,0.75); }
+            40% { transform: scale(0.75,1.25); }
+            50% { transform: scale(1.15,0.85); }
+            65% { transform: scale(0.95,1.05); }
+            75% { transform: scale(1.05,0.95); }
+            to { transform: scale(1,1); }
+        }
+
+        /* Sidebar 스타일 */
+        .sidebar {
+            position: fixed;
+            left: -300px;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            padding-top: 90px;
+            transition: left 0.3s ease;
+            z-index: 1001;
+        }
+
+        .sidebar.show {
+            left: 0;
+        }
+
+        .toggle-sidebar {
+            cursor: pointer;
+            font-size: 20px;
+            float: right;
+            margin-right: 10px;
         }
 
         #todo-list {
@@ -205,25 +264,17 @@
         }
 
         #todo-list li {
+            margin: 10px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 10px 0;
-        }
-
-        /* form 스타일 */
-        #todo-form {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
         }
 
         input[type="text"] {
             padding: 10px;
             font-size: 16px;
             width: 70%;
-            margin-right: 10px; /* 입력 필드와 버튼 사이의 간격 */
+            margin-right: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
@@ -234,13 +285,13 @@
             background-color: #4CAF50;
             color: white;
             border-radius: 4px;
+            cursor: pointer;
         }
 
         input[type="submit"]:hover {
             background-color: #45a049;
         }
 
-        /* 삭제 버튼 스타일 */
         .delete-btn {
             background-color: red;
             color: white;
@@ -252,13 +303,22 @@
         }
     </style>
 </head>
+
 <body>
+    <script src="js/calendar.js"defer></script>
+    <script src="js/clock.js"defer></script>
+    <script src="js/greetings.js"defer></script>
+    <script src="js/main.js"defer></script>
+    <script src="js/temperature.js"defer></script>
+    <script src="js/todo.js"defer></script>
+    <script src="js/weather.js"defer></script>
+    <script src="js/login&singin.js"defer></script>
+ 
 <nav class="navbar">
     <div class="navbar__logo">
         <i class="fa-brands fa-codepen"></i>
         <a href="">Sia's Life</a>
     </div>
-
     <ul class="navbar__menu">
         <li><a href="Home.html">Home</a></li>
         <li><a href="Gallery.html">Gallery</a></li>
@@ -266,8 +326,7 @@
         <li><a href="Scheduling.html">Scheduling</a></li>
         <li><a href="FAQ.html">FAQ</a></li>
     </ul>
-
-    <ul class="navbar__icons">
+    <ul class="navbar__icons"> 
         <li><i class="fa-brands fa-dropbox"></i></li>
         <li><i class="fa-brands fa-twitter"></i></li>
     </ul>
@@ -275,7 +334,7 @@
     <a href="#" class="navbar__toogleBtn">
         <i class="fa-solid fa-bars"></i>
     </a>
-
+     
     <a href="login.html" class="navbar__icons__login">
         <i class="fa-solid fa-right-to-bracket"></i>
     </a>
@@ -291,7 +350,6 @@
 
 <div class="background-overlay"></div>
 
-<!-- 글씨를 표시할 컨테이너 -->
 <div class="container">
     <h1 id="greeting" class="hidden"></h1>
     <h2 id="clock">00:00:00</h2>
@@ -301,24 +359,26 @@
     <div id="temperature">
         <span></span>
     </div>
-    <form class="hidden" id="login-form">
-        <input required maxlength="15" type="text" placeholder="What is your name?" />
-        <input type="submit" value="Log In"/>
-    </form>
-    
-    <!-- 할 일 목록 입력 -->
     <form id="todo-form">
-        <input type="text" id="todo-input" placeholder="할 일을 쓰고 저장하세요." required/>
-        <input type="submit" value="저장"/>
+        <input type="text" id="todo-input" placeholder="할일을 쓰고 저장을 누르세요." required />
+        <input type="submit" value="저장" />
     </form>
+</div>
+
+<!-- Sidebar -->
+<div id="sidebar" class="sidebar">
+    <h3>To-Do List 
+        <span class="toggle-sidebar">&lt;</span>
+    </h3>
     <ul id="todo-list"></ul>
 </div>
 
-<!-- 할 일 목록 스크립트 -->
 <script>
     const todoForm = document.querySelector("#todo-form");
     const todoInput = document.querySelector("#todo-input");
     const todoList = document.querySelector("#todo-list");
+    const sidebar = document.getElementById("sidebar");
+    const toggleSidebarBtn = document.querySelector(".toggle-sidebar");
 
     let toDos = [];
 
@@ -329,16 +389,29 @@
         saveToDos();
     }
 
+    function toggleComplete(event) {
+        const checkbox = event.target;
+        const text = checkbox.nextElementSibling;
+        if (checkbox.checked) {
+            text.style.textDecoration = "line-through";
+            text.style.color = "#888";
+        } else {
+            text.style.textDecoration = "none";
+            text.style.color = "#000";
+        }
+    }
+
     function paintToDo(newTodo) {
         const li = document.createElement("li");
         li.id = newTodo.id;
 
+        // 체크박스 생성
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.className = "checkbox";
+        checkbox.addEventListener("change", toggleComplete);
 
         const span = document.createElement("span");
-        span.className = "text";
         span.innerText = newTodo.text;
 
         const deleteButton = document.createElement("button");
@@ -346,7 +419,7 @@
         deleteButton.className = "delete-btn";
         deleteButton.addEventListener("click", deleteToDo);
 
-        li.appendChild(checkbox);
+        li.appendChild(checkbox);  // 체크박스 추가
         li.appendChild(span);
         li.appendChild(deleteButton);
         todoList.appendChild(li);
@@ -362,19 +435,45 @@
         todoInput.value = "";
         paintToDo(newTodo);
         saveToDos();
+        showSidebar();  // 저장 버튼이 눌리면 sidebar를 보여줌
     }
 
     function saveToDos() {
         localStorage.setItem("todos", JSON.stringify(toDos));
     }
 
-    todoForm.addEventListener("submit", handleToDoSubmit);
+    function showSidebar() {
+        sidebar.classList.add("show");  // sidebar를 화면에 보이게
+    }
 
+    function hideSidebar() {
+        sidebar.classList.remove("show");  // sidebar를 숨김
+    }
+
+    // < 기호 클릭 시 사이드바 숨기기
+    toggleSidebarBtn.addEventListener("click", hideSidebar);
+
+    // 저장 버튼이 눌렸을 때 sidebar를 보여줌
+    todoForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const newTodo = {
+            text: todoInput.value,
+            id: Date.now(),
+        };
+        toDos.push(newTodo);
+        todoInput.value = "";
+        paintToDo(newTodo);
+        saveToDos();
+        showSidebar();  // 저장 버튼이 눌리면 sidebar를 보임
+    });
+
+    // 기존 저장된 할일 가져오기
     const savedToDos = localStorage.getItem("todos");
     if (savedToDos) {
         const parsedToDos = JSON.parse(savedToDos);
         toDos = parsedToDos;
         parsedToDos.forEach(paintToDo);
+        showSidebar();  // 저장된 할 일이 있으면 sidebar를 보임
     }
 </script>
 
