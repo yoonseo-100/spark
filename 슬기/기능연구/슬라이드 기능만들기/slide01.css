@@ -1,0 +1,73 @@
+.section .slidewrap {
+    max-width: 100%; /* 화면 비율 100%로 맞춤 */
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.section .slidelist {
+    white-space: nowrap;
+    font-size: 0;
+    display: flex;
+    transition: all 0.5s ease; /* 슬라이드 전환 */
+    width: 300%; /* 슬라이드가 가로로 길게 3개 표시되도록 */
+}
+
+.section .slidelist > li {
+    width: 100%; /* 각 슬라이드의 너비를 전체 너비로 설정 */
+    flex: 0 0 100%;
+}
+
+.section .slidelist > li > a {
+    display: block;
+    position: relative;
+}
+
+.section .slidelist > li > a img {
+    width: 100%;
+    height: auto;
+}
+
+.section .slidelist label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10; /* 버튼이 사라지지 않도록 다른 요소보다 위에 고정 */
+}
+
+.section .slidelist .left {
+    left: 10px;
+    background: url('./img/왼쪽화살표이미지.png') center center / 100% no-repeat;
+}
+
+.section .slidelist .right {
+    right: 10px;
+    background: url('./img/화살표01.png') center center / 100% no-repeat;
+}
+
+/* 슬라이드 위치 제어 */
+.section [id="slide01"]:checked ~ .slidewrap .slidelist {
+    transform: translateX(0%);
+}
+
+.section [id="slide02"]:checked ~ .slidewrap .slidelist {
+    transform: translateX(-100%);
+}
+
+.section [id="slide03"]:checked ~ .slidewrap .slidelist {
+    transform: translateX(-200%);
+}
+
+/* 무한 반복 */
+@keyframes slideLoop {
+    0% { transform: translateX(0%); }
+    33% { transform: translateX(-100%); }
+    66% { transform: translateX(-200%); }
+    100% { transform: translateX(0%); }
+}
+
+.section .slidelist {
+    animation: slideLoop 10s infinite; /* 자동 슬라이드 반복 */
+}
