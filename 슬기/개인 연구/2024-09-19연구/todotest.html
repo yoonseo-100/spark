@@ -9,8 +9,6 @@
     <title>Sia's Life</title>
     <script src="https://kit.fontawesome.com/8ca7ceab09.js" crossorigin="anonymous"></script>
 
-
-
     <style>
         * {
             margin: 0;
@@ -34,6 +32,7 @@
             position: relative;
             font-family: Arial, sans-serif;
         }
+
         .background-overlay {
             position: absolute;
             top: 0;
@@ -56,25 +55,26 @@
             width: 100%;
             z-index: 1000; /* Navbar가 다른 콘텐츠보다 위에 있도록 설정 */
         }
+
         .navbar__logo {
             font-size: 24px;
             color: #f0f4f5;
         }
 
         .navbar__logo i {
-             color: #1c25c9;
+            color: #1c25c9;
         }
 
         .navbar__menu {
             display: flex;
             list-style: none;
             padding-left: 0;
-            color:  #d0d0d0;
+            color: #d0d0d0;
         }
 
         .navbar__menu li {
             padding: 10px 15px;
-            color:  #d0d0d0;
+            color: #d0d0d0;
         }
 
         .navbar__menu li:hover {
@@ -109,44 +109,6 @@
             color: #1c25c9;
         }
 
-/* 반응형 헤더 */
-@media screen and (max-width: 768px) {
-        .navbar {
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 8px 24px;
-        }
-
-        .navbar__menu {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-
-        .navbar__menu li {
-            width: 100%;
-            text-align: center;
-        }
-
-        .navbar__icons {
-            display: none;
-            justify-content: center;
-            width: 100%;
-        }
-
-        .navbar__toogleBtn,
-        .navbar__icons__login {
-             display: block;
-        }
-
-        .navbar__menu.active,
-        .navbar__icons.active,
-        .navbar__icons__login.active {
-            display: flex;
-    }   
-}
-
         img {
             position: absolute;
             top: 0;
@@ -156,6 +118,7 @@
             object-fit: cover;
             z-index: 0;
         }
+
         .container {
             position: relative;
             z-index: 1;
@@ -168,7 +131,7 @@
             margin: 10px;
         }
 
-/* 체크박스 스타일 */
+        /* 체크박스 스타일 */
         .checkbox input {
             display: none;
         }
@@ -226,13 +189,13 @@
         }
 
         @keyframes jelly {
-            from { transform: scale(1,1); }
-            30% { transform: scale(1.25,0.75); }
-            40% { transform: scale(0.75,1.25); }
-            50% { transform: scale(1.15,0.85); }
-            65% { transform: scale(0.95,1.05); }
-            75% { transform: scale(1.05,0.95); }
-            to { transform: scale(1,1); }
+            from { transform: scale(1, 1); }
+            30% { transform: scale(1.25, 0.75); }
+            40% { transform: scale(0.75, 1.25); }
+            50% { transform: scale(1.15, 0.85); }
+            65% { transform: scale(0.95, 1.05); }
+            75% { transform: scale(1.05, 0.95); }
+            to { transform: scale(1, 1); }
         }
 
         #todo-list {
@@ -242,7 +205,7 @@
         }
 
         #todo-list li {
-            margin: 10px 0;
+            display: flex;
             justify-content: space-between;
             align-items: center;
             margin: 10px 0;
@@ -272,10 +235,12 @@
             color: white;
             border-radius: 4px;
         }
+
         input[type="submit"]:hover {
             background-color: #45a049;
         }
 
+        /* 삭제 버튼 스타일 */
         .delete-btn {
             background-color: red;
             color: white;
@@ -285,94 +250,43 @@
             margin-left: 10px;
             border-radius: 5px;
         }
-        /* 팝업 스타일 */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            z-index: 10;
-            width: 300px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .popup.show {
-            display: block;
-        }
-
-        #popup-message {
-            margin-bottom: 10px;
-            font-size: 1.5em;
-        }
-
-        #character-popup {
-            display: block;
-            margin-top: 10px;
-            width: 150px;
-            height: auto;
-        }
-
-        /* OX 퀴즈 스타일 */
-        .quiz-question {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-
-
     </style>
-
 </head>
 <body>
-    <script src="js/calendar.js"defer></script>
-    <script src="js/clock.js"defer></script>
-    <script src="js/greetings.js"defer></script>
-    <script src="js/main.js"defer></script>
-    <script src="js/temperature.js"defer></script>
-    <script src="js/todo.js"defer></script>
-    <script src="js/weather.js"defer></script>
-    <script src="js/login&singin.js"defer></script>
-    <script src="js/login.js"defer></script>
-
 <nav class="navbar">
-        <div class="navbar__logo"> 
-            <i class="fa-brands fa-codepen"></i>
-            <a href = ""> Sia's Life</a>
-        </div>
+    <div class="navbar__logo">
+        <i class="fa-brands fa-codepen"></i>
+        <a href="">Sia's Life</a>
+    </div>
 
-        <ul class="navbar__menu"> 
-            <li><a href="Home.html">Home</a></li>
-            <li><a href="Gallery.html">Gallery</a></li>
-            <li><a href="Writing.html">Writing</a></li>
-            <li><a href="Scheduling.html">Scheduling</a></li>
-            <li><a href="FAQ.html">FAQ</a></li>
-        </ul>
+    <ul class="navbar__menu">
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="Gallery.html">Gallery</a></li>
+        <li><a href="Writing.html">Writing</a></li>
+        <li><a href="Scheduling.html">Scheduling</a></li>
+        <li><a href="FAQ.html">FAQ</a></li>
+    </ul>
 
-        <ul class="navbar__icons"> 
-            <li><i class="fa-brands fa-dropbox"></i></li>
-            <li><i class="fa-brands fa-twitter"></i></li>
-        </ul>
+    <ul class="navbar__icons">
+        <li><i class="fa-brands fa-dropbox"></i></li>
+        <li><i class="fa-brands fa-twitter"></i></li>
+    </ul>
 
-        <a href="#" class="navbar__toogleBtn">
-            <i class="fa-solid fa-bars"></i>
-        </a>
-         
-        <a href="login.html" class="navbar__icons__login">
-            <i class="fa-solid fa-right-to-bracket"></i>
-        </a>
+    <a href="#" class="navbar__toogleBtn">
+        <i class="fa-solid fa-bars"></i>
+    </a>
+
+    <a href="login.html" class="navbar__icons__login">
+        <i class="fa-solid fa-right-to-bracket"></i>
+    </a>
 </nav>
 
 <script>
-        const images = ["01_배경화면.jpeg", "02_배경화면.jpeg", "03_배경화면.jpeg", "04_배경화면.jpeg", "05_배경화면.jpeg", "06_배경화면.jpeg", "07_배경화면.jpeg"];
-        const chosenImage = images[Math.floor(Math.random() * images.length)];
-        const bgImage = document.createElement("img");
-        bgImage.src = `img/${chosenImage}`;
-        document.body.appendChild(bgImage);
+    const images = ["01_배경화면.jpeg", "02_배경화면.jpeg", "03_배경화면.jpeg", "04_배경화면.jpeg", "05_배경화면.jpeg", "06_배경화면.jpeg", "07_배경화면.jpeg"];
+    const chosenImage = images[Math.floor(Math.random() * images.length)];
+    const bgImage = document.createElement("img");
+    bgImage.src = `img/${chosenImage}`;
+    document.body.appendChild(bgImage);
 </script>
 
 <div class="background-overlay"></div>
@@ -391,28 +305,16 @@
         <input required maxlength="15" type="text" placeholder="What is your name?" />
         <input type="submit" value="Log In"/>
     </form>
+    
+    <!-- 할 일 목록 입력 -->
     <form id="todo-form">
-        <input type="text" id="todo-input" placeholder="할일을 쓰고 저장을 누르세요." required/>
+        <input type="text" id="todo-input" placeholder="할 일을 쓰고 저장하세요." required/>
         <input type="submit" value="저장"/>
     </form>
     <ul id="todo-list"></ul>
-
-    <!-- OX 퀴즈 -->
-    <h3 id="quiz-title">[[O.X 퀴즈]]</h3>
-    <div id="quiz-question"></div> <!-- 문제를 표시할 영역 -->
-    <div id="quiz-buttons">
-        <button id="o-button">O</button>
-        <button id="x-button">X</button>
-    </div>
 </div>
 
-<!-- 팝업 -->
-<div id="popup" class="popup">
-    <img id="character-popup" src="./img/움직이는 고양이.gif" alt="Character" /> <!-- 이미지 -->
-    <div id="popup-message"></div> <!-- Correct! 또는 Wrong! 문구 -->
-</div>
-
-<!-- todolist 스크립트 -->
+<!-- 할 일 목록 스크립트 -->
 <script>
     const todoForm = document.querySelector("#todo-form");
     const todoInput = document.querySelector("#todo-input");
@@ -427,18 +329,6 @@
         saveToDos();
     }
 
-    function toggleComplete(event) {
-        const checkbox = event.target;
-        const text = checkbox.nextElementSibling;
-        if (checkbox.checked) {
-            text.style.textDecoration = "line-through";
-            text.style.color = "#888"; // 선택 시 텍스트 색상 변경
-        } else {
-            text.style.textDecoration = "none";
-            text.style.color = "#000"; // 선택 해제 시 텍스트 색상 복원
-        }
-    }
-
     function paintToDo(newTodo) {
         const li = document.createElement("li");
         li.id = newTodo.id;
@@ -446,7 +336,6 @@
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.className = "checkbox";
-        checkbox.addEventListener("click", toggleComplete);
 
         const span = document.createElement("span");
         span.className = "text";
@@ -487,76 +376,6 @@
         toDos = parsedToDos;
         parsedToDos.forEach(paintToDo);
     }
-</script>
-
-
-
-<!-- 퀴즈 스크립트 -->
-<script>
-    const questionElement = document.querySelector("#quiz-question");
-    const oButton = document.querySelector("#o-button");
-    const xButton = document.querySelector("#x-button");
-    const popup = document.querySelector("#popup");
-    const popupMessage = document.querySelector("#popup-message");
-    const characterPopup = document.querySelector("#character-popup");
-
-    // 퀴즈 문제 목록
-    const questions = [
-        { question: "Is the Earth round?", answer: "O" },
-        { question: "Is 2 + 2 = 5?", answer: "X" },
-        { question: "Is the sky blue?", answer: "O" },
-        { question: "Is fire cold?", answer: "X" },
-        { question: "Do birds fly?", answer: "O" },
-        { question: "Is water dry?", answer: "X" },
-        { question: "Is 1 + 1 = 2?", answer: "O" },
-        { question: "Can fish walk on land?", answer: "X" },
-        { question: "Is snow hot?", answer: "X" },
-        { question: "Do plants make oxygen?", answer: "O" }
-    ];
-
-    let currentQuestion = {};
-
-    // 문제를 랜덤으로 선택하는 함수
-    function showNextQuestion() {
-        currentQuestion = questions[Math.floor(Math.random() * questions.length)];
-        questionElement.innerText = currentQuestion.question;
-    }
-
-    // 정답 체크 및 팝업 표시
-    function checkAnswer(userAnswer) {
-        if (userAnswer === currentQuestion.answer) {
-            popupMessage.innerText = "Correct!";
-            characterPopup.style.display = "block"; // 고양이 이미지 표시
-        } else {
-            popupMessage.innerText = "Wrong!";
-            characterPopup.style.display = "none"; // 오답일 경우 이미지 숨김
-        }
-        showPopup();
-    }
-
-    // 팝업을 표시하는 함수
-    function showPopup() {
-        popup.classList.add("show");
-
-        // 5초 후 팝업 닫기
-        setTimeout(() => {
-            popup.classList.remove("show");
-            showNextQuestion(); // 다음 문제로 넘어가기
-        }, 5000);
-    }
-
-    // O 버튼 클릭 시
-    oButton.addEventListener("click", () => {
-        checkAnswer("O");
-    });
-
-    // X 버튼 클릭 시
-    xButton.addEventListener("click", () => {
-        checkAnswer("X");
-    });
-
-    // 첫 번째 문제 표시
-    showNextQuestion();
 </script>
 
 </body>
