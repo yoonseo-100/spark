@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/8ca7ceab09.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            height: 100vh; /* 부모 요소에 전체 화면 높이를 지정 */
+            display: flex; /* 화면 중앙 배치에 필요한 설정 */
+            justify-content: center; /* 가로 중앙 정렬 */
+            align-items: center; /* 세로 중앙 정렬 */
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: white;
+            padding-top: 300px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* 중앙 정렬 */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #a3a1a4d0;
+            padding: 10px 15px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar__logo {
+            font-size: 24px;
+            color: #f0f4f5;
+        }
+
+        .navbar__logo i {
+            color: #1c25c9;
+        }
+
+        .navbar__menu {
+            display: flex;
+            list-style: none;
+            padding-left: 0;
+            color: #d0d0d0;
+        }
+
+        .navbar__menu li {
+            padding: 10px 15px;
+            color: #d0d0d0;
+        }
+
+        .navbar__menu li:hover {
+            background-color: #d49466;
+            border-radius: 4px;
+        }
+
+        .navbar__icons {
+            list-style: none;
+            color: #1c25c9;
+            display: flex;
+        }
+
+        .navbar__icons li {
+            padding: 8px 12px;
+        }
+
+        .navbar__icons__login {
+            display: flex;
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            margin-left: 30px;
+            z-index: 1100;
+        }
+
+        .navbar__toogleBtn {
+            display: none;
+            position: absolute;
+            right: 32px;
+            font-size: 24px;
+            color: #1c25c9;
+        }
+
+        /* 반응형 헤더 */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 8px 24px;
+            }
+
+            .navbar__menu {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .navbar__menu li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .navbar__icons {
+                display: none;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .navbar__toogleBtn,
+            .navbar__icons__login {
+                display: block;
+            }
+
+            .navbar__menu.active,
+            .navbar__icons.active,
+            .navbar__icons__login.active {
+                display: flex;
+            }
+        }
+
+        .board-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .board-header h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .board-options {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .board-options button {
+            padding: 6px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .board-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .board-table th, .board-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .board-table th {
+            background-color: #f2f2f2;
+        }
+
+        .write-button {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .write-button button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-filter {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .pagination button {
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="board-header">
+            <h1>Writing</h1>
+        </div>
+        <nav class="navbar">
+            <div class="navbar__logo">
+                <i class="fa-brands fa-codepen"></i>
+                <a href="">Writing</a>
+            </div>
+    
+            <ul class="navbar__menu">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Gallery.html">Gallery</a></li>
+                <li><a href="index.html">Writing</a></li>
+                <li><a href="Scheduling.html">Scheduling</a></li>
+                <li><a href="FAQ.html"> FAQ</a></li>
+            </ul>
+    
+            <ul class="navbar__icons">
+                <li><i class="fa-brands fa-dropbox"></i></li>
+                <li><i class="fa-brands fa-twitter"></i></li>
+            </ul>
+    
+            <a href="#" class="navbar__toogleBtn">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+    
+            <a href="login.html" class="navbar__icons__login">
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </a>
+        </nav>
+
+        <!-- 배경화면을 랜덤으로 설정하는 JavaScript 코드 -->
+        <script>
+            const toggleBtn = document.querySelector('.navbar__toogleBtn');
+            const menu = document.querySelector('.navbar__menu');
+            const icons = document.querySelector('.navbar__icons');
+    
+            toggleBtn.addEventListener('click', () => {
+                menu.classList.toggle('active');
+                icons.classList.toggle('active');
+            });
+    
+            const images = ["01_배경화면.jpeg", "02_배경화면.jpeg", "03_배경화면.jpeg", "04_배경화면.jpeg", "05_배경화면.jpeg", "06_배경화면.jpeg", "07_배경화면.jpeg"];
+            const chosenImage = images[Math.floor(Math.random() * images.length)];
+            document.body.style.backgroundImage = `url('img/${chosenImage}')`;
+            document.body.style.backgroundSize = 'cover';
+        </script>
+
+        <div class="board-options">
+            <button class="board-analysis">게시판 분석</button>
+            <select id="posts-per-page" onchange="changePostsPerPage()">
+                <option value="5">5개씩</option>
+                <option value="10">10개씩</option>
+                <option value="15">15개씩</option>
+            </select>
+        </div>
+
+        <table class="board-table" id="post-table">
+            <thead>
+                <tr>
+                    <th>제목</th>
+                    <th>내용</th>
+                    <th>태그</th>
+                </tr>
+            </thead>
+            <tbody id="post-body">
+                <tr>
+                    <td colspan="3" class="no-posts">등록된 게시글이 없습니다.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="write-button">
+            <a href="write.html"><button>글쓰기</button></a>
+        </div>
+
+        <div class="pagination">
+            <button id="prev-btn" onclick="prevPage()" disabled>이전</button>
+            <span id="page-indicator">1</span>
+            <button id="next-btn" onclick="nextPage()">다음</button>
+        </div>
+
+    </div>
+
+    <script>
+        let posts = JSON.parse(localStorage.getItem('posts')) || [];
+        let currentPage = 1;
+        let postsPerPage = 5;
+
+        function loadPosts() {
+            const postTable = document.getElementById('post-body');
+            postTable.innerHTML = ''; // 기존 내용 초기화
+            const start = (currentPage - 1) * postsPerPage;
+            const end = start + postsPerPage;
+            const paginatedPosts = posts.slice(start, end);
+
+            if (paginatedPosts.length > 0) {
+                paginatedPosts.forEach(post => {
+                    const row = postTable.insertRow();
+                    row.insertCell(0).innerText = post.title;
+                    row.insertCell(1).innerText = post.content;
+                    row.insertCell(2).innerText = post.tags;
+                });
+            } else {
+                postTable.innerHTML = '<tr><td colspan="3" class="no-posts">등록된 게시글이 없습니다.</td></tr>';
+            }
+
+            // 페이징 버튼 활성/비활성화
+            document.getElementById('prev-btn').disabled = currentPage === 1;
+            document.getElementById('next-btn').disabled = end >= posts.length;
+            document.getElementById('page-indicator').innerText = currentPage;
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                loadPosts();
+            }
+        }
+
+        function nextPage() {
+            const totalPages = Math.ceil(posts.length / postsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                loadPosts();
+            }
+        }
+
+        function changePostsPerPage() {
+            postsPerPage = parseInt(document.getElementById('posts-per-page').value);
+            currentPage = 1; // 페이지를 첫 페이지로 초기화
+            loadPosts();
+        }
+
+        // 페이지 로드 시 게시글을 불러옴
+        window.onload = loadPosts;
+    </script>
+</body>
+</html>
+
+
+
+
+
