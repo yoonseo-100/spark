@@ -1,0 +1,110 @@
+/* body와 html의 높이를 100%로 설정하고 flexbox로 세로 정렬 */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex; /* 수평 및 수직 정렬 */
+    flex-direction: column; /* 세로로 순서대로 배치 */
+    justify-content: center; /* 세로 중앙 정렬 */
+    align-items: center; /* 가로 중앙 정렬 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    font-family: Arial, sans-serif; /* 기본 폰트 설정 */
+}
+
+
+/* 배경 이미지를 고정 */
+img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 배경 이미지가 화면을 채움 */
+    z-index: -1; /* 콘텐츠 뒤로 배경 이미지 위치 */
+}
+
+/* 콘텐츠들을 세로로 중앙에 배치 */
+/* 전체 콘텐츠를 감싸는 컨테이너에 배경색을 적용 */
+.container {
+    display: flex;
+    flex-direction: column; /* 모든 요소를 세로로 배치 */
+    justify-content: center; /* 세로 중앙 정렬 */
+    align-items: center; /* 가로 중앙 정렬 */
+    height: auto; /* 콘텐츠 높이에 맞게 자동으로 조정 */
+    width: auto; /* 콘텐츠의 길이에 맞춰 자동으로 조정 */
+    background-color: rgba(211, 211, 211, 0.7); /* 연한 회색 배경을 전체에 적용 (투명도 70%) */
+    padding: 20px; /* 전체 컨테이너의 내부 여백을 줌 */
+    border-radius: 10px; /* 전체 컨테이너 모서리를 둥글게 설정 */
+    z-index: 1; /* 배경 이미지 위에 표시되도록 설정 */
+    margin: 20px auto; /* 위아래 20px 간격을 두고, 가운데 정렬 */
+}
+
+
+h1, h2 {
+    margin: 0;
+    padding: 0;
+}
+
+#clock {
+    font-size: 4em; /* 시계 크기 */
+}
+
+#greeting {
+    font-size: 3em; /* 인사말 크기 */
+}
+
+form input {
+    font-size: 1.5em; /* 입력 필드 폰트 크기 */
+    padding: 10px;
+    margin: 10px 0;
+    text-align: center;
+    width: 300px; /* 입력 필드의 너비 설정 */
+}
+
+/* 투두 리스트 스타일 */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    font-size: 1.5em;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px; /* 일정한 너비 */
+}
+
+button {
+    background: none;
+    border: none;
+    color: red;
+    font-size: 1.0em;
+    cursor: pointer;
+}
+
+/* 로그인 버튼의 크기를 줄이는 스타일 */
+#login-form input[type="submit"] {
+    padding: 10px 30px; /* 내부 여백을 줄여서 버튼의 크기를 줄임 */
+    width: auto; /* 버튼의 너비를 텍스트에 맞춰 자동으로 설정 */
+}
+
+/* 인용구와 날씨 정보 */
+#quote {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+#weather {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+
+
+
+.hidden {
+    display: none;
+}
+
