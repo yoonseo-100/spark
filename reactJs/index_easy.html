@@ -8,32 +8,18 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    let counter = 0;
-    function counterUp() {
-      counter = counter + 1;
-      render();
+
+    function App() {
+      const [counter, modifier] = React.useState(0);
+
+      return (
+        <div>
+          <h3>Total clicks : {counter}</h3>
+          <button>Click me</button>
+        </div>
+      );
     }
 
-    function render() {
-      ReactDOM.render(<Container />, root);
-    }
-
-    const Container = () => (
-      <div>
-        <h3>Total clicks : {counter}</h3>
-        <button onClick={counterUp}>Click me</button>
-      </div>
-    );
-    /* 위의 const Container 와 같은 행동을 한다.
-    function Container() {
-    return (
-      <div>
-        <h3>Total clicks : {counter}</h3>
-        <button onClick={counterUp}>Click me</button>
-      </div>
-    );
-    }
-    */
-    render();
+    ReactDOM.render(<App />, root);
   </script>
 </html>
