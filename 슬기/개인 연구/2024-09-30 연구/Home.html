@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
     <title>Sia's Life</title>
@@ -157,97 +157,106 @@
             z-index: 0;
         }
 
+        /* 1번 요소(중앙에 고정) */
         .container {
-            position: relative;
-            z-index: 1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
             color: white;
-            transform: scale(2);
+            z-index: 1;
         }
 
-        h1, h2, #weather, #temperature, #todo-form, #quote, #quiz-buttons {
+        h1, h2, #weather, #temperature {
             margin: 10px;
         }
 
-    
-
+        /* 2번 요소(채팅창을 오른쪽 하단에 고정) */
         #tlkio {
-            position: fixed; /* 화면에 고정 */
-            padding-left: 1000px;
-            bottom: 20px;    /* 화면 하단에서 20px */
-            right: 20px;     /* 화면 오른쪽에서 20px */
-            width: 90px;    /* 너비 300px */
-            height: 200px;   /* 높이 200px */
-            border-radius: 5px; /* 모서리 둥글게 */
-            z-index: 1003; /* 다른 요소 위로 나오게 설정 */
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 300px; 
+            height: 400px;
+            z-index: 1003;
+            border-radius: 5px;
         }
-
-
-</style>
-
-
-
+    </style>
 
 </head>
 
 <body>
-    <script src="js/calendar.js"defer></script>
-    <script src="js/clock.js"defer></script>
-    <script src="js/greetings.js"defer></script>
-    <script src="js/main.js"defer></script>
-    <script src="js/temperature.js"defer></script>
-    <script src="js/weather.js"defer></script>
-    <script src="js/login&singin.js"defer></script>
- 
-<nav class="navbar">
-    <div class="navbar__logo">
-        <i class="fa-brands fa-codepen"></i>
-        <a href="">Sia's Life</a>
+    <nav class="navbar">
+        <div class="navbar__logo">
+            <i class="fa-brands fa-codepen"></i>
+            <a href="">Sia's Life</a>
+        </div>
+        <ul class="navbar__menu">
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="Gallery.html">Gallery</a></li>
+            <li><a href="index.html">Writing</a></li>
+            <li><a href="Scheduling.html">Scheduling</a></li>
+            <li><a href="FAQ.html"> FAQ</a></li>
+        </ul>
+        <ul class="navbar__icons"> 
+            <li><i class="fa-brands fa-dropbox"></i></li>
+            <li><i class="fa-brands fa-twitter"></i></li>
+        </ul>
+
+        <a href="#" class="navbar__toogleBtn">
+            <i class="fa-solid fa-bars"></i>
+        </a>
+         
+        <a href="login.html" class="navbar__icons__login">
+            <i class="fa-solid fa-right-to-bracket"></i>
+        </a>
+    </nav>
+
+    <!-- 배경 이미지 스크립트 -->
+    <script>
+        const images = ["01_배경화면.jpeg", "02_배경화면.jpeg", "03_배경화면.jpeg", "04_배경화면.jpeg", "05_배경화면.jpeg", "06_배경화면.jpeg", "07_배경화면.jpeg"];
+        const chosenImage = images[Math.floor(Math.random() * images.length)];
+        const bgImage = document.createElement("img");
+        bgImage.src = `img/${chosenImage}`;
+        document.body.appendChild(bgImage);
+    </script>
+
+    <div class="background-overlay"></div>
+
+    <div class="container">
+        <h1 id="greeting"></h1>
+        <h2 id="clock">00:00:00</h2>
+        <div id="weather">
+            <span></span> / <span></span>
+        </div>
+        <div id="temperature">
+            <span></span>
+        </div>
     </div>
-    <ul class="navbar__menu">
-        <li><a href="Home.html">Home</a></li>
-        <li><a href="Gallery.html">Gallery</a></li>
-        <li><a href="index.html">Writing</a></li>
-        <li><a href="Scheduling.html">Scheduling</a></li>
-        <li><a href="FAQ.html">FAQ</a></li>
-    </ul>
-    <ul class="navbar__icons"> 
-        <li><i class="fa-brands fa-dropbox"></i></li>
-        <li><i class="fa-brands fa-twitter"></i></li>
-    </ul>
 
-    <a href="#" class="navbar__toogleBtn">
-        <i class="fa-solid fa-bars"></i>
-    </a>
-     
-    <a href="login.html" class="navbar__icons__login">
-        <i class="fa-solid fa-right-to-bracket"></i>
-    </a>
-</nav>
+    <!-- 로그인 정보 불러오기 스크립트 -->
+    <script>
+        window.onload = function() {
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            const greetingElement = document.getElementById('greeting');
 
-<script>
-    const images = ["01_배경화면.jpeg", "02_배경화면.jpeg", "03_배경화면.jpeg", "04_배경화면.jpeg", "05_배경화면.jpeg", "06_배경화면.jpeg", "07_배경화면.jpeg"];
-    const chosenImage = images[Math.floor(Math.random() * images.length)];
-    const bgImage = document.createElement("img");
-    bgImage.src = `img/${chosenImage}`;
-    document.body.appendChild(bgImage);
-</script>
+            if (loggedInUser) {
+                greetingElement.textContent = `Hello, ${loggedInUser}님!`;
+            } else {
+                greetingElement.textContent = 'Welcome to Sia\'s Life!';
+            }
+        };
+    </script>
 
-<div class="background-overlay"></div>
+    <!-- 추가한 자바스크립트 파일들 -->
+    <script src="js/clock.js" defer></script>
+    <script src="js/weather.js" defer></script>
+    <script src="js/temperature.js" defer></script>
 
-<div class="container">
-    <h1 id="greeting" class="hidden"></h1>
-    <h2 id="clock">00:00:00</h2>
-    <div id="weather">
-        <span></span> / <span></span>
-    </div>
-    <div id="temperature">
-        <span></span>
-    </div>
-</div>
-
-<div id="tlkio" data-channel="Spark" data-theme="theme--pop" style="width:100%;height:400px;"></div>
-<script async src="http://tlk.io/embed.js" type="text/javascript"></script>
+    <!-- 채팅 임베드 코드 -->
+    <div id="tlkio" data-channel="Spark" data-theme="theme--pop"></div>
+    <script async src="http://tlk.io/embed.js" type="text/javascript"></script>
 
 </body>
 </html>
