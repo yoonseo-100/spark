@@ -8,28 +8,32 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    const Title = () => (
-      <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-        Hello, I'm a title!
-      </h3>
-    );
-    const Button = () => (
-      <button
-        style={{
-          backgroundColor: "tomato",
-        }}
-        onClick={() => console.log("I'm clicked!")}
-      >
-        "Click me"
-      </button>
-    );
+    let counter = 0;
+    function counterUp() {
+      counter = counter + 1;
+      render();
+    }
+
+    function render() {
+      ReactDOM.render(<Container />, root);
+    }
 
     const Container = () => (
       <div>
-        <Title />
-        <Button />
+        <h3>Total clicks : {counter}</h3>
+        <button onClick={counterUp}>Click me</button>
       </div>
     );
-    ReactDOM.render(<Container />, root);
+    /* 위의 const Container 와 같은 행동을 한다.
+    function Container() {
+    return (
+      <div>
+        <h3>Total clicks : {counter}</h3>
+        <button onClick={counterUp}>Click me</button>
+      </div>
+    );
+    }
+    */
+    render();
   </script>
 </html>
