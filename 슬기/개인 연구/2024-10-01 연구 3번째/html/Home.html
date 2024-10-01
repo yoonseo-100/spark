@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
+    <title>Sia's Life</title>
+    <script src="https://kit.fontawesome.com/8ca7ceab09.js" crossorigin="anonymous"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            font-family: Arial, sans-serif;
+        }
+
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #a3a1a4d0;
+            padding: 10px 15px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1002;
+        }
+
+        .navbar__logo {
+            font-size: 24px;
+            color: #f0f4f5;
+        }
+
+        .navbar__logo i {
+            color: #1c25c9;
+        }
+
+        .navbar__menu {
+            display: flex;
+            list-style: none;
+            padding-left: 0;
+            color: #d0d0d0;
+        }
+
+        .navbar__menu li {
+            padding: 10px 15px;
+            color: #d0d0d0;
+        }
+
+        .navbar__menu li:hover {
+            background-color: #d49466;
+            border-radius: 4px;
+        }
+
+        .navbar__icons {
+            list-style: none;
+            color: #1c25c9;
+            display: flex;
+        }
+
+        .navbar__icons li {
+            padding: 8px 12px;
+        }
+
+        .navbar__icons__login {
+            display: flex;
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            margin-left: 30px;
+            z-index: 1100;
+        }
+
+        /* 로그아웃 버튼 (보라색 글씨) */
+        .navbar__icons__logout {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 50px;
+            margin-left: 30px;
+            z-index: 1100;
+            color: #7d3cb5; /* 보라색 */
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .navbar__icons__logout:hover {
+            text-decoration: underline;
+        }
+
+        .navbar__toogleBtn {
+            display: none;
+            position: absolute;
+            right: 32px;
+            font-size: 24px;
+            color: #1c25c9;
+        }
+
+        /* 반응형 헤더 */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 8px 24px;
+            }
+
+            .navbar__menu {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .navbar__menu li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .navbar__icons {
+                display: none;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .navbar__toogleBtn,
+            .navbar__icons__login {
+                display: block;
+            }
+
+            .navbar__menu.active,
+            .navbar__icons.active,
+            .navbar__icons__login.active {
+                display: flex;
+            }
+        }
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        /* 1번 요소(중앙에 고정) */
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 1;
+        }
+
+        h1, h2, #weather, #temperature {
+            margin: 10px;
+        }
+
+        /* 2번 요소(채팅창을 오른쪽 하단에 고정) */
+        #tlkio {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 300px; 
+            height: 400px;
+            z-index: 1003;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar__logo">
+            <i class="fa-brands fa-codepen"></i>
+            <a href="">Sia's Life</a>
+        </div>
+        <ul class="navbar__menu">
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="Gallery.html">Gallery</a></li>
+            <li><a href="index.html">Writing</a></li>
+            <li><a href="Scheduling.html">Scheduling</a></li>
+            <li><a href="FAQ.html"> FAQ</a></li>
+        </ul>
+        <ul class="navbar__icons"> 
+            <li><i class="fa-brands fa-dropbox"></i></li>
+            <li><i class="fa-brands fa-twitter"></i></li>
+        </ul>
+
+        <a href="#" class="navbar__toogleBtn">
+            <i class="fa-solid fa-bars"></i>
+        </a>
+
+        <!-- 로그인 아이콘 -->
+        <a href="login.html" class="navbar__icons__login" id="loginBtn">
+            <i class="fa-solid fa-right-to-bracket"></i>
+        </a>
+
+        <!-- 로그아웃 텍스트 추가 (보라색 글씨) -->
+        <a href="#" class="navbar__icons__logout" id="logoutBtn">
+            Log Out
+        </a>
+
+    </nav>
+
+    <script>
+        // 페이지 로드 시 로그인 상태 확인 및 로그인/로그아웃 버튼 처리
+        window.onload = function() {
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            const greetingElement = document.getElementById('greeting');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const loginBtn = document.getElementById('loginBtn');
+
+            if (loggedInUser) {
+                if (greetingElement) greetingElement.textContent = `Hello, ${loggedInUser}님!`;
+                logoutBtn.style.display = 'flex';  // 로그아웃 버튼 표시
+                loginBtn.style.display = 'none';   // 로그인 아이콘 숨기기
+            } else {
+                if (greetingElement) greetingElement.textContent = 'Welcome to Sia\'s Life!';
+                logoutBtn.style.display = 'none';  // 로그아웃 버튼 숨기기
+                loginBtn.style.display = 'flex';   // 로그인 아이콘 표시
+            }
+        };
+
+        // 로그아웃 버튼 클릭 시 동작
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            // 로그아웃 처리: localStorage에서 사용자 정보 삭제
+            localStorage.removeItem('loggedInUser');
+            
+            // 로그아웃 후 로그인 페이지로 리다이렉트
+            window.location.href = "login.html";
+        });
+    </script>
+
+    <!-- 배경 이미지 스크립트 -->
+    <script>
+        const images = ["01_배경화면.jpeg", "02_배경화면.jpeg", "03_배경화면.jpeg", "04_배경화면.jpeg", "05_배경화면.jpeg", "06_배경화면.jpeg", "07_배경화면.jpeg"];
+        const chosenImage = images[Math.floor(Math.random() * images.length)];
+        const bgImage = document.createElement("img");
+        bgImage.src = `img/${chosenImage}`;
+        document.body.appendChild(bgImage);
+    </script>
+
+    <div class="background-overlay"></div>
+
+    <div class="container">
+        <h1 id="greeting"></h1>
+        <h2 id="clock">00:00:00</h2>
+        <div id="weather">
+            <span></span> / <span></span>
+        </div>
+        <div id="temperature">
+            <span></span>
+        </div>
+    </div>
+
+    <!-- 로그인 정보 불러오기 스크립트 -->
+    <!-- 이 부분은 이미 window.onload에 통합되었으므로 중복되지 않도록 삭제 -->
+    <!-- 추가한 자바스크립트 파일들 -->
+    <script src="js/clock.js" defer></script>
+    <script src="js/weather.js" defer></script>
+    <script src="js/temperature.js" defer></script>
+
+    <!-- 채팅 임베드 코드 -->
+    <div id="tlkio" data-channel="Spark" data-theme="theme--pop"></div>
+    <script async src="http://tlk.io/embed.js" type="text/javascript"></script>
+
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글쓰기</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            height: 100vh; /* 부모 요소에 전체 화면 높이를 지정 */
+            display: flex; /* 화면 중앙 배치에 필요한 설정 */
+            justify-content: center; /* 가로 중앙 정렬 */
+            align-items: center; /* 세로 중앙 정렬 */
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: white;
+            padding-top: 300px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* 중앙 정렬 */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #a3a1a4d0;
+            padding: 10px 15px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar__logo {
+            font-size: 24px;
+            color: #f0f4f5;
+        }
+
+        .navbar__logo i {
+            color: #1c25c9;
+        }
+
+        .navbar__menu {
+            display: flex;
+            list-style: none;
+            padding-left: 0;
+            color: #d0d0d0;
+        }
+
+        .navbar__menu li {
+            padding: 10px 15px;
+            color: #d0d0d0;
+        }
+
+        .navbar__menu li:hover {
+            background-color: #d49466;
+            border-radius: 4px;
+        }
+
+        .navbar__icons {
+            list-style: none;
+            color: #1c25c9;
+            display: flex;
+        }
+
+        .navbar__icons li {
+            padding: 8px 12px;
+        }
+
+        .navbar__icons__login {
+            display: flex;
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            margin-left: 30px;
+            z-index: 1100;
+        }
+
+        .navbar__toogleBtn {
+            display: none;
+            position: absolute;
+            right: 32px;
+            font-size: 24px;
+            color: #1c25c9;
+        }
+
+        /* 반응형 헤더 */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 8px 24px;
+            }
+
+            .navbar__menu {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .navbar__menu li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .navbar__icons {
+                display: none;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .navbar__toogleBtn,
+            .navbar__icons__login {
+                display: block;
+            }
+
+            .navbar__menu.active,
+            .navbar__icons.active,
+            .navbar__icons__login.active {
+                display: flex;
+            }
+        }
+
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .form-section {
+            margin-top: 20px;
+        }
+
+        .form-section input[type="text"], .form-section textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .toolbar {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .toolbar .tool-item {
+            display: flex;
+            flex-direction: column; /* 이미지와 텍스트 세로 정렬 */
+            align-items: center;
+            margin-right: 15px;
+            padding: 5px 0;
+        }
+
+        .toolbar .tool-item img {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 5px;
+        }
+
+        .save-buttons {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .save-buttons button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .checkboxes label {
+            margin-right: 20px;
+        }
+
+        .tag-input {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: #666;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .tag-input input {
+            width: 100%;
+            padding: 5px;
+            border: none;
+            outline: none;
+        }
+
+        .tag-input input::placeholder {
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>글쓰기</h1>
+        </div>
+
+        <nav class="navbar">
+            <div class="navbar__logo">
+                <i class="fa-brands fa-codepen"></i>
+                <a href="">글쓰기</a>
+            </div>
+    
+            <ul class="navbar__menu">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Gallery.html">Gallery</a></li>
+                <li><a href="index.html">Writing</a></li>
+                <li><a href="Scheduling.html">Scheduling</a></li>
+                <li><a href="FAQ.html"> FAQ</a></li>
+            </ul>
+    
+            <ul class="navbar__icons">
+                <li><i class="fa-brands fa-dropbox"></i></li>
+                <li><i class="fa-brands fa-twitter"></i></li>
+            </ul>
+    
+            <a href="#" class="navbar__toogleBtn">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+    
+            <a href="login.html" class="navbar__icons__login">
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </a>
+        </nav>
+
+        <script>
+            const toggleBtn = document.querySelector('.navbar__toogleBtn');
+            const menu = document.querySelector('.navbar__menu');
+            const icons = document.querySelector('.navbar__icons');
+    
+            toggleBtn.addEventListener('click', () => {
+                menu.classList.toggle('active');
+                icons.classList.toggle('active');
+            });
+    
+            const images = ["01_배경화면.jpeg", "02_배경화면.jpeg", "03_배경화면.jpeg", "04_배경화면.jpeg", "05_배경화면.jpeg", "06_배경화면.jpeg", "07_배경화면.jpeg"];
+            const chosenImage = images[Math.floor(Math.random() * images.length)];
+            document.body.style.backgroundImage = `url('img/${chosenImage}')`;
+            document.body.style.backgroundSize = 'cover';
+        </script>
+
+
+        <div class="form-section">
+            <label for="category">카테고리 선택</label>
+            <select id="category">
+                <option>글쓰기</option>
+                <option>기타 카테고리</option>
+            </select>
+        </div>
+
+        <div class="form-section">
+            <input type="text" id="title" placeholder="제목을 입력해 주세요">
+        </div>
+
+        <!-- 툴바 -->
+        <div class="toolbar">
+            <div class="tool-item">
+                <img src="./img/사진.png" alt="사진">
+                <span>사진</span>
+            </div>
+            <div class="tool-item">
+                <img src="./img/동영상.png" alt="동영상">
+                <span>동영상</span>
+            </div>
+            <div class="tool-item">
+                <img src="./img/스티커.png" alt="스티커">
+                <span>스티커</span>
+            </div>
+            <div class="tool-item">
+                <img src="./img/인용구.png" alt="인용구">
+                <span>인용구</span>
+            </div>
+            <div class="tool-item">
+                <img src="./img/파일.png" alt="파일">
+                <span>파일</span>
+            </div>
+            <div class="tool-item">
+                <img src="./img/링크.png" alt="링크">
+                <span>링크</span>
+            </div>
+            <div class="tool-item">
+                <img src="./img/투표.png" alt="투표">
+                <span>투표</span>
+            </div>
+            <div class="tool-item">
+                <img src="./img/일정.png" alt="일정">
+                <span>일정</span>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <textarea id="content" rows="10" placeholder="내용을 입력하세요."></textarea>
+        </div>
+
+        <div class="tag-input">
+            <label for="tags">#태그를 입력해주세요 (최대 10개)</label>
+            <input type="text" id="tags" placeholder="#태그를 입력해주세요">
+        </div>
+
+        <div class="checkboxes">
+            <label><input type="checkbox"> 댓글 허용</label>
+            <label><input type="checkbox"> 블로그 · 카페 공유 허용</label>
+            <label><input type="checkbox"> 복사 · 저장 허용</label>
+        </div>
+
+        <div class="save-buttons">
+            <button onclick="submitPost()">등록</button>
+        </div>
+    </div>
+
+    <script>
+        function submitPost() {
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+            const tags = document.getElementById('tags').value;
+
+            // localStorage에 데이터 저장
+            const postData = {
+                title: title,
+                content: content,
+                tags: tags
+            };
+
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            posts.push(postData);
+            localStorage.setItem('posts', JSON.stringify(posts));
+
+            // index.html로 이동
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
