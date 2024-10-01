@@ -68,7 +68,8 @@
           <div>
             <label htmlfor="Km">Kilometer : </label>
             <input
-              value={ivtd ? testKm * 1.60934 : testKm}
+              value={ivtd ? Number((testKm * 1.60934).toFixed(2)) : testKm}
+              // 소수점자리 반올림(문자열) => number.toFixed(숫자의_자리)
               id="Km"
               placeholder="Write Kilometer"
               type="number"
@@ -80,7 +81,7 @@
           <div>
             <label htmlfor="miles">Miles : </label>
             <input
-              value={ivtd ? testKm : testKm * 0.621371}
+              value={ivtd ? testKm : Number((testKm * 0.621371).toFixed(2))}
               id="miles"
               placeholder="Write Miles"
               type="number"
