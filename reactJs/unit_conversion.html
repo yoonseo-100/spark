@@ -22,11 +22,11 @@
       return (
         <div>
           <div>
-            <label htmlfor="minutes">Minutes</label>
+            <label htmlfor="minutes">Minutes : </label>
             <input
               value={inverted ? amount * 60 : amount} // 조건 ? true일 때 실행할 코드 : false일 때 실행할 코드
               id="minutes"
-              placeholder="Minutes"
+              placeholder="Write Minutes"
               type="number"
               onChange={onChange}
               disabled={inverted}
@@ -34,11 +34,11 @@
           </div>
 
           <div>
-            <label htmlfor="hours">Hours</label>
+            <label htmlfor="hours">Hours : </label>
             <input
               value={inverted ? amount : Math.round(amount / 60)}
               id="hours"
-              placeholder="Hours"
+              placeholder="Write Hours"
               type="number"
               disabled={!inverted}
               onChange={onChange}
@@ -52,8 +52,46 @@
       );
     }
     function KmToMiles() {
-      return;
-      <h3>KM 2 M</h3>;
+      const [testKm, setTestKm] = React.useState(0);
+      const [ivtd, setIvtd] = React.useState(false);
+      const onChange = (event) => {
+        setTestKm(event.target.value);
+      };
+      const reset = () => setTestKm(0);
+      const onInvert = () => {
+        reset();
+        setIvtd((current) => !current);
+      };
+
+      return (
+        <div>
+          <div>
+            <label htmlfor="Km">Kilometer : </label>
+            <input
+              value={ivtd ? testKm * 1.60934 : testKm}
+              id="Km"
+              placeholder="Write Kilometer"
+              type="number"
+              onChange={onChange}
+              disabled={ivtd}
+            />
+          </div>
+
+          <div>
+            <label htmlfor="miles">Miles : </label>
+            <input
+              value={ivtd ? testKm : testKm * 0.621371}
+              id="miles"
+              placeholder="Write Miles"
+              type="number"
+              disabled={!ivtd}
+              onChange={onChange}
+            />
+          </div>
+          <button onClick={reset}>Reset</button>
+          <button onClick={onInvert}>{ivtd ? "Turn back" : "Invert"}</button>
+        </div>
+      );
     }
 
     function App() {
