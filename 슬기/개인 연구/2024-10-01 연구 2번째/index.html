@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/8ca7ceab09.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="board-header">
+            <h1>Writing</h1>
+        </div>
+        <nav class="navbar">
+            <div class="navbar__logo">
+                <i class="fa-brands fa-codepen"></i>
+                <a href="">Writing</a>
+            </div>
+
+            <ul class="navbar__menu">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Gallery.html">Gallery</a></li>
+                <li><a href="index.html">Writing</a></li>
+                <li><a href="Scheduling.html">Scheduling</a></li>
+                <li><a href="FAQ.html"> FAQ</a></li>
+            </ul>
+
+            <ul class="navbar__icons">
+                <li><i class="fa-brands fa-dropbox"></i></li>
+                <li><i class="fa-brands fa-twitter"></i></li>
+            </ul>
+
+            <a href="#" class="navbar__toogleBtn">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+
+            <a href="login.html" class="navbar__icons__login">
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </a>
+        </nav>
+
+        <script>
+            const toggleBtn = document.querySelector('.navbar__toogleBtn');
+            const menu = document.querySelector('.navbar__menu');
+            const icons = document.querySelector('.navbar__icons');
+
+            toggleBtn.addEventListener('click', () => {
+                menu.classList.toggle('active');
+                icons.classList.toggle('active');
+            });
+
+            const images = ["01_배경화면.jpeg", "02_배경화면.jpeg", "03_배경화면.jpeg", "04_배경화면.jpeg", "05_배경화면.jpeg", "06_배경화면.jpeg", "07_배경화면.jpeg"];
+            const chosenImage = images[Math.floor(Math.random() * images.length)];
+            document.body.style.backgroundImage = `url('img/${chosenImage}')`;
+            document.body.style.backgroundSize = 'cover';
+        </script>
+
+        <div class="board-options">
+            <button class="board-analysis">게시판 분석</button>
+            <select id="posts-per-page" onchange="changePostsPerPage()">
+                <option value="5">5개씩</option>
+                <option value="10">10개씩</option>
+                <option value="15">15개씩</option>
+            </select>
+        </div>
+
+        <table class="board-table" id="post-table">
+            <thead>
+                <tr>
+                    <th>제목</th>
+                    <th>내용</th>
+                    <th>태그</th>
+                </tr>
+            </thead>
+            <tbody id="post-body">
+                <tr>
+                    <td colspan="3" class="no-posts">등록된 게시글이 없습니다.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="write-button">
+            <a href="write.html"><button>글쓰기</button></a>
+        </div>
+
+        <div class="pagination">
+            <button id="prev-btn" onclick="prevPage()" disabled>이전</button>
+            <span id="page-indicator">1</span>
+            <button id="next-btn" onclick="nextPage()">다음</button>
+        </div>
+
+    </div>
+
+    <script>
+        let posts = JSON.parse(localStorage.getItem('posts')) || [];
+        let currentPage = 1;
+        let postsPerPage = 5;
+
+        function loadPosts() {
+            const postTable = document.getElementById('post-body');
+            postTable.innerHTML = ''; // 기존 내용 초기화
+            const start = (currentPage - 1) * postsPerPage;
+            const end = start + postsPerPage;
+            const paginatedPosts = posts.slice(start, end);
+
+            if (paginatedPosts.length > 0) {
+                paginatedPosts.forEach(post => {
+                    const row = postTable.insertRow();
+                    row.insertCell(0).innerText = post.title;
+                    row.insertCell(1).innerText = post.content;
+                    row.insertCell(2).innerText = post.tags;
+                });
+            } else {
+                postTable.innerHTML = '<tr><td colspan="3" class="no-posts">등록된 게시글이 없습니다.</td></tr>';
+            }
+
+            // 페이징 버튼 활성/비활성화
+            document.getElementById('prev-btn').disabled = currentPage === 1;
+            document.getElementById('next-btn').disabled = end >= posts.length;
+            document.getElementById('page-indicator').innerText = currentPage;
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                loadPosts();
+            }
+        }
+
+        function nextPage() {
+            const totalPages = Math.ceil(posts.length / postsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                loadPosts();
+            }
+        }
+
+        function changePostsPerPage() {
+            postsPerPage = parseInt(document.getElementById('posts-per-page').value);
+            currentPage = 1; // 페이지를 첫 페이지로 초기화
+            loadPosts();
+        }
+
+        // 페이지 로드 시 게시글을 불러옴
+        window.onload = loadPosts;
+    </script>
+</body>
+</html>
+
+
+
