@@ -101,6 +101,24 @@
             z-index: 1100;
         }
 
+        /* 로그아웃 버튼 (보라색 글씨) */
+        .navbar__icons__logout {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 50px;
+            margin-left: 30px;
+            z-index: 1100;
+            color: #7d3cb5; /* 보라색 */
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .navbar__icons__logout:hover {
+            text-decoration: underline;
+        }
+
         .navbar__toogleBtn {
             display: none;
             position: absolute;
@@ -207,11 +225,47 @@
         <a href="#" class="navbar__toogleBtn">
             <i class="fa-solid fa-bars"></i>
         </a>
-         
-        <a href="login.html" class="navbar__icons__login">
+
+        <!-- 로그인 아이콘 -->
+        <a href="login.html" class="navbar__icons__login" id="loginBtn">
             <i class="fa-solid fa-right-to-bracket"></i>
         </a>
+
+        <!-- 로그아웃 텍스트 추가 (보라색 글씨) -->
+        <a href="#" class="navbar__icons__logout" id="logoutBtn">
+            Log Out
+        </a>
+
     </nav>
+
+    <script>
+        // 페이지 로드 시 로그인 상태 확인 및 로그인/로그아웃 버튼 처리
+        window.onload = function() {
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            const greetingElement = document.getElementById('greeting');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const loginBtn = document.getElementById('loginBtn');
+
+            if (loggedInUser) {
+                if (greetingElement) greetingElement.textContent = `Hello, ${loggedInUser}님!`;
+                logoutBtn.style.display = 'flex';  // 로그아웃 버튼 표시
+                loginBtn.style.display = 'none';   // 로그인 아이콘 숨기기
+            } else {
+                if (greetingElement) greetingElement.textContent = 'Welcome to Sia\'s Life!';
+                logoutBtn.style.display = 'none';  // 로그아웃 버튼 숨기기
+                loginBtn.style.display = 'flex';   // 로그인 아이콘 표시
+            }
+        };
+
+        // 로그아웃 버튼 클릭 시 동작
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            // 로그아웃 처리: localStorage에서 사용자 정보 삭제
+            localStorage.removeItem('loggedInUser');
+            
+            // 로그아웃 후 로그인 페이지로 리다이렉트
+            window.location.href = "login.html";
+        });
+    </script>
 
     <!-- 배경 이미지 스크립트 -->
     <script>
@@ -236,19 +290,7 @@
     </div>
 
     <!-- 로그인 정보 불러오기 스크립트 -->
-    <script>
-        window.onload = function() {
-            const loggedInUser = localStorage.getItem('loggedInUser');
-            const greetingElement = document.getElementById('greeting');
-
-            if (loggedInUser) {
-                greetingElement.textContent = `Hello, ${loggedInUser}님!`;
-            } else {
-                greetingElement.textContent = 'Welcome to Sia\'s Life!';
-            }
-        };
-    </script>
-
+    <!-- 이 부분은 이미 window.onload에 통합되었으므로 중복되지 않도록 삭제 -->
     <!-- 추가한 자바스크립트 파일들 -->
     <script src="js/clock.js" defer></script>
     <script src="js/weather.js" defer></script>
@@ -260,5 +302,7 @@
 
 </body>
 </html>
+
+
 
 
