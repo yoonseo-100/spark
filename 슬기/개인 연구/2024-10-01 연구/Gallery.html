@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/8ca7ceab09.js" crossorigin="anonymous"></script>
+    
+    <style>
+        /* 동일한 스타일 그대로 유지 */
+        /* 스타일 코드 생략 */
+    </style>
+</head>
+<body>
+
+    <h1>Sia's Album</h1>
+    
+    <div class="buttons">
+        <button onclick="filterGallery('all')">All Photos</button>
+        <button onclick="filterGallery('Project')">Project</button>
+        <button onclick="filterGallery('Music')">Music</button>
+        <button onclick="filterGallery('Travel')">Travel</button>
+        <button onclick="filterGallery('Food')">Food</button>
+        <button onclick="filterGallery('Life')">Life</button>
+    </div>
+
+    <div class="upload-container">
+        <input type="file" id="fileInput" accept="image/*,video/*">
+        <select id="category">
+            <option value="Project">Project</option>
+            <option value="Music">Music</option>
+            <option value="Travel">Travel</option>
+            <option value="Food">Food</option>
+            <option value="Life">Life</option>
+        </select>
+        <button onclick="uploadFile()">Upload Photo/Video</button>
+    </div>
+
+    <div class="gallery" id="gallery"></div>
+
+    <!-- TypeScript로 컴파일된 JS 파일을 연결 -->
+    <script src="Gallery.js" defer></script>
+
+    <div class="background-overlay">
+        <script>
+            const images = ["01_배경화면.jpeg", "02_배경화면.jpeg", "03_배경화면.jpeg", "04_배경화면.jpeg", "05_배경화면.jpeg", "06_배경화면.jpeg", "07_배경화면.jpeg"];
+            const chosenImage = images[Math.floor(Math.random() * images.length)];
+            const bgImage = document.createElement("img");
+            bgImage.src = `img/${chosenImage}`;
+            document.querySelector('.background-overlay').appendChild(bgImage);
+        </script>
+    </div>
+
+    <nav class="navbar">
+        <div class="navbar__logo"> 
+            <i class="fa-brands fa-codepen"></i>
+            <a href = ""> Gallery </a>
+        </div>
+
+        <ul class="navbar__menu"> 
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="Gallery.html">Gallery</a></li>
+            <li><a href="index.html">Writing</a></li>
+            <li><a href="Scheduling.html">Scheduling</a></li>
+            <li><a href="FAQ.html"> FAQ</a></li>
+        </ul>
+
+        <ul class="navbar__icons"> 
+            <li><i class="fa-brands fa-dropbox"></i></li>
+            <li><i class="fa-brands fa-twitter"></i></li>
+        </ul>
+
+        <a href="#" class="navbar__toogleBtn">
+            <i class="fa-solid fa-bars"></i>
+        </a>
+         
+        <a href="login.html" class="navbar__icons__login">
+            <i class="fa-solid fa-right-to-bracket"></i>
+        </a>
+    </nav>
+
+</body>
+</html>
+
+
+
+

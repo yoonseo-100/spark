@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/8ca7ceab09.js" crossorigin="anonymous"></script>
+    <style>
+        /* 기존 스타일 유지 */
+        /* 스타일 코드 생략 */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="board-header">
+            <h1>Writing</h1>
+        </div>
+        <nav class="navbar">
+            <div class="navbar__logo">
+                <i class="fa-brands fa-codepen"></i>
+                <a href="">Writing</a>
+            </div>
+    
+            <ul class="navbar__menu">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Gallery.html">Gallery</a></li>
+                <li><a href="index.html">Writing</a></li>
+                <li><a href="Scheduling.html">Scheduling</a></li>
+                <li><a href="FAQ.html"> FAQ</a></li>
+            </ul>
+    
+            <ul class="navbar__icons">
+                <li><i class="fa-brands fa-dropbox"></i></li>
+                <li><i class="fa-brands fa-twitter"></i></li>
+            </ul>
+    
+            <a href="#" class="navbar__toogleBtn">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+    
+            <a href="login.html" class="navbar__icons__login">
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </a>
+        </nav>
+
+        <!-- TypeScript로 컴파일된 JS 파일을 연결 -->
+        <script src="index.js" defer></script>
+
+        <div class="board-options">
+            <button class="board-analysis">게시판 분석</button>
+            <select id="posts-per-page" onchange="changePostsPerPage()">
+                <option value="5">5개씩</option>
+                <option value="10">10개씩</option>
+                <option value="15">15개씩</option>
+            </select>
+        </div>
+
+        <table class="board-table" id="post-table">
+            <thead>
+                <tr>
+                    <th>제목</th>
+                    <th>내용</th>
+                    <th>태그</th>
+                </tr>
+            </thead>
+            <tbody id="post-body">
+                <tr>
+                    <td colspan="3" class="no-posts">등록된 게시글이 없습니다.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="write-button">
+            <a href="write.html"><button>글쓰기</button></a>
+        </div>
+
+        <div class="pagination">
+            <button id="prev-btn" onclick="prevPage()" disabled>이전</button>
+            <span id="page-indicator">1</span>
+            <button id="next-btn" onclick="nextPage()">다음</button>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
