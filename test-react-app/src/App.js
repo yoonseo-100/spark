@@ -1,67 +1,60 @@
-import { useState, useEffect } from "react"; // useState와 useEffect 훅을 불러옴
+import { useState, useEffect } from "react";
 
 function App() {
-  const [loading, setLoading] = useState(true); // 로딩 상태 관리
-  const [coins, setCoins] = useState([]); // API에서 받은 코인 리스트 저장
-  const [amount, setAmount] = useState(""); // 사용자가 입력한 달러 금액 저장
-  const [selectedCoin, setSelectedCoin] = useState(null); // 선택된 코인의 정보를 저장
+  const [loading, setLoading] = useState(true);
+  const [movies, setMovies] = useState([]);
+  // 그래서 .then대신 사용하려고 함수 추가함.
+  const getMovies = async () => {
+    // 3. async와 await를 사용하여 한껏 게을러지기.
+    const json = await (
+      await fetch(
+        `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year`
+      )
+    ).json();
+    setMovies(json.data.movies);
+    setLoading(false);
+    /* 2. async()와 await를 기본적으로 사용하여 코드 만들기. 
+    const response = await fetch(
+      `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year`
+    );
+    const json = await response.json();
+    setMovies(json.data.movies);
+    setLoading(false);
+    */
+  };
 
   useEffect(() => {
-    fetch("https://api.coinpaprika.com/v1/tickers")
+    getMovies();
+    /* 1. .then을 사용하여 코드 만들기.
+      fetch(
+      `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year`
+    )
       .then((response) => response.json())
       .then((json) => {
-        setCoins(json); // API에서 받은 코인 데이터를 저장
-        setLoading(false); // 로딩 완료 후 false로 설정
+        setMovies(json.data.movies);
+        setLoading(false); 
       });
+    요즘엔 .then보다 async-await를 사용함. -> 위치변경.*/
   }, []);
-
-  // 사용자가 입력한 달러 금액을 저장하는 함수
-  const handleAmountChange = (event) => {
-    setAmount(event.target.value); // input 필드의 값을 amount에 저장
-  };
-
-  // 사용자가 선택한 코인을 저장하는 함수
-  const handleCoinChange = (event) => {
-    const selectedCoinData = coins.find(
-      (coin) => coin.name === event.target.value
-    );
-    setSelectedCoin(selectedCoinData); // 선택된 코인의 데이터를 저장
-  };
 
   return (
     <div>
-      <h1>the Coins! {loading ? "" : `(${coins.length})`}</h1>
       {loading ? (
-        <strong>Loading...</strong>
+        <h1>Loading...</h1>
       ) : (
         <div>
-          <select onChange={handleCoinChange}>
-            {" "}
-            {/* 사용자가 코인을 선택할 때 호출 */}
-            <option>Select a coin</option> {/* 기본 옵션으로 코인 선택 안내 */}
-            {coins.map((coin) => (
-              <option key={coin.id} value={coin.name}>
-                {" "}
-                {/* 각 코인에 고유한 key 값 제공 */}
-                {coin.name} ({coin.symbol}): ${coin.quotes.USD.price} USD
-              </option>
-            ))}
-          </select>
-
-          <input
-            type="number"
-            value={amount} // 사용자가 입력한 달러 금액을 관리
-            onChange={handleAmountChange} // 입력 시 값을 저장
-            placeholder="Enter your dollars" // 입력 필드에 나타날 안내 텍스트
-          />
-
-          {selectedCoin &&
-            amount && ( // 코인이 선택되고 금액이 입력된 경우에만 실행
-              <p>
-                You can buy {amount / selectedCoin.quotes.USD.price}{" "}
-                {selectedCoin.symbol} with ${amount}.
-              </p>
-            )}
+          {movies.map((movie) => (
+            <div key={movie.id}>
+              <img src={movie.medium_cover_image} />
+              <h2>{movie.title}</h2>
+              <p>{movie.summary}</p>
+              <ul>
+                {movie.genres.map((g) => (
+                  <li key={g}>{g}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       )}
     </div>
