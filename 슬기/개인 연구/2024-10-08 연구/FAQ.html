@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
+    <title>FAQ</title>
+    <script src="https://kit.fontawesome.com/8ca7ceab09.js" crossorigin="anonymous"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #a3a1a4d0;
+            padding: 10px 15px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar__logo {
+            font-size: 24px;
+            color: #f0f4f5;
+        }
+
+        .navbar__logo i {
+            color: #1c25c9;
+        }
+
+        .navbar__menu {
+            display: flex;
+            list-style: none;
+            padding-left: 0;
+            color: #d0d0d0;
+        }
+
+        .navbar__menu li {
+            padding: 10px 15px;
+            color: #d0d0d0;
+        }
+
+        .navbar__menu li:hover {
+            background-color: #d49466;
+            border-radius: 4px;
+        }
+
+        .navbar__icons {
+            list-style: none;
+            color: #1c25c9;
+            display: flex;
+        }
+
+        .navbar__icons li {
+            padding: 8px 12px;
+        }
+
+        .navbar__icons__login {
+            display: flex;
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            margin-left: 30px;
+            z-index: 1100;
+        }
+
+        .navbar__toogleBtn {
+            display: none;
+            position: absolute;
+            right: 32px;
+            font-size: 24px;
+            color: #1c25c9;
+        }
+
+        /* 반응형 헤더 */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 8px 24px;
+            }
+
+            .navbar__menu {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .navbar__menu li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .navbar__icons {
+                display: none;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .navbar__toogleBtn,
+            .navbar__icons__login {
+                display: block;
+            }
+
+            .navbar__menu.active,
+            .navbar__icons.active,
+            .navbar__icons__login.active {
+                display: flex;
+            }
+        }
+
+        .accordion {
+            position: absolute;
+            top: 25%;  /* 화면 위에서 30% 아래로 */
+            left: 20%; /* 화면 왼쪽에서 20% 떨어진 곳에 배치 */
+            width: 60%; /* 너비를 60%로 설정 */
+            transform: scale(1.5); /* 크기를 1.5배 키우기 */
+            z-index: 2;
+        }
+
+        input[id*="answer"] {
+            display: none;
+        }
+
+        input[id*="answer"] + label {
+            border-radius: 5%;
+            display: block;
+            padding: 20px;
+            border: 1px solid #ba7cf0;
+            border-bottom: 0;
+            color: #1f1616;
+            font-weight: 900;
+            background: #ba7cf0;
+            cursor: pointer;
+            position: relative;
+            font-size: 16px;
+        }
+
+        input[id*="answer"] + label em {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            margin-top: -10px;
+            display: inline-block;
+            background: url('./img/FAQ_버튼이미지.jpeg') 0 0 no-repeat;
+            background-size: contain;
+        }
+
+        input[id*="answer"] + label + div {
+            max-height: 0;
+            transition: all .35s;
+            overflow: hidden;
+            background: #ebf8ff;
+            font-size: 11px;
+        }
+
+        input[id*="answer"] + label + div p {
+            display: inline-block;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        input[id*="answer"]:checked + label + div {
+            max-height: 300px;
+        }
+
+        input[id*="answer"]:checked + label em {
+            background: url('./img/FAQ_버튼이미지01.jpeg') 0 0 no-repeat;
+            background-size: contain;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar__logo">
+            <i class="fa-brands fa-codepen"></i>
+            <a href="">FAQ Page</a>
+        </div>
+
+        <ul class="navbar__menu">
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="Gallery.html">Gallery</a></li>
+            <li><a href="index.html">Writing</a></li>
+            <li><a href="Scheduling.html">Scheduling</a></li>
+            <li><a href="FAQ.html"> FAQ</a></li>
+        </ul>
+
+        <ul class="navbar__icons">
+            <li><i class="fa-brands fa-dropbox"></i></li>
+            <li><i class="fa-brands fa-twitter"></i></li>
+        </ul>
+
+        <a href="#" class="navbar__toogleBtn">
+            <i class="fa-solid fa-bars"></i>
+        </a>
+
+        <a href="login.html" class="navbar__icons__login">
+            <i class="fa-solid fa-right-to-bracket"></i>
+        </a>
+    </nav>
+
+    <script>
+        const toggleBtn = document.querySelector('.navbar__toogleBtn');
+        const menu = document.querySelector('.navbar__menu');
+        const icons = document.querySelector('.navbar__icons');
+
+        toggleBtn.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            icons.classList.toggle('active');
+        });
+
+        const images = ["01_배경화면.jpeg", "02_배경화면.jpeg", "03_배경화면.jpeg", "04_배경화면.jpeg", "05_배경화면.jpeg", "06_배경화면.jpeg", "07_배경화면.jpeg"];
+        const chosenImage = images[Math.floor(Math.random() * images.length)];
+        document.body.style.backgroundImage = `url('img/${chosenImage}')`;
+    </script>
+
+    <div class="accordion">
+        <input type="radio" name="accordion" id="answer01">
+        <label for="answer01"> 당신의 취미는 무엇인가요? <em></em></label>
+        <div><p> 새로운 것 배우기, 새로운 경험하기! </p></div>
+
+        <input type="radio" name="accordion" id="answer02">
+        <label for="answer02"> 홈페이지를 만들게 된 계기가 있나요? <em></em></label>
+        <div><p> 상상만 하던 것을 직접 내 손으로 구현해 보고 싶었어요. </p></div>
+
+        <input type="radio" name="accordion" id="answer03">
+        <label for="answer03"> 당신의 가장 좋아하는 영화는 무엇인가요? <em></em></label>
+        <div><p> 메이즈 러너와 같은 생존게임물~  </p></div>
+
+        <input type="radio" name="accordion" id="answer04">
+        <label for="answer04"> 당신은 어떤 분야에서 일하나요? <em></em></label>
+        <div><p> 경리 -> 영어학원 교사 -> 개발자(hope) </p></div>
+
+        <input type="radio" name="accordion" id="answer05">
+        <label for="answer05"> 가장 기억에 남는 여행지는 어디인가요? <em></em></label>
+        <div><p> 미국 </p></div>
+
+        <input type="radio" name="accordion" id="answer06">
+        <label for="answer06"> 평소에 어떤 음악을 즐겨 들으시나요? <em></em></label>
+        <div><p> K-Pop </p></div>
+
+        <input type="radio" name="accordion" id="answer07">
+        <label for="answer07"> 당신의 인생 목표는 무엇인가요? <em></em></label>
+        <div><p> 비밀~~ </p></div>
+
+        <input type="radio" name="accordion" id="answer08">
+        <label for="answer08"> 앞으로 도전하고 싶은 일은 무엇인가요? <em></em></label>
+        <div><p> 개발자(프리랜서) </p></div>
+
+        <input type="radio" name="accordion" id="answer09">
+        <label for="answer09"> 홈페이지 방문자에게 한 마디 남겨주세요. <em></em></label>
+        <div><p> 늦었다고 생각할때 시작하자! 아직 늦지 않았다!! 화이팅!!  </p></div>
+
+        <!-- 추가적인 질문들을 넣을 수 있습니다 -->
+    </div>
+</body>
+</html>
+
+
+
