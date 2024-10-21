@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+.spark-button {
+  font-size: 3rem; /* 폰트 크기를 3배로 설정 */
+  padding: 20px 40px; /* 버튼 크기를 더 키우기 위해 padding을 추가 */
+  background-color: yellow;
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+.spark-button:hover {
+  background-color: orange;
+  color: white;
+}
