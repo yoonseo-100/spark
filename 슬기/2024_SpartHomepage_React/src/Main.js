@@ -1,12 +1,11 @@
 import React from 'react';
 
-function Main() {
+function Home() {
   return (
     <div>
-      <h1>Welcome to Spark Academy Main Page!</h1>
-      <p>Here is the main content of Spark Academy.</p>
+      <h2>This is the Home Page</h2>
     </div>
   );
 }
 
-export default Main;
+export default Home;
