@@ -1,11 +1,11 @@
 import React from 'react'; 
-import Sweetalert2Basic from './R056_Sweetalert2Basic'
+import AxiosPost from './R062_AxiosPost'
 
 function App() {
   return (
     <div>
       <h1>Start React 200!</h1>
-      <Sweetalert2Basic/>
+      <AxiosPost/>
     </div>
   );
 }
