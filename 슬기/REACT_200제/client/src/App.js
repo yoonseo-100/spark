@@ -1,15 +1,17 @@
 import React from 'react';
-import StrAddButton from './StrAddButton';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import About from './components/About';
 
-function App(props) {
+function App() {
   return (
-    <div>
-      <h1>Start React 200! </h1>
-      <span> {props.store.getState().data.str}</span><br/>
-      <StrAddButton store={props.store} />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </Router>
   );
 }
 
 export default App;
-
