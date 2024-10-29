@@ -1,16 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client'; // React 18부터는 'react-dom/client' 사용
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
-import App from './App';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux'; // Redux Provider 추가
-import reducers from './reducers';
+import App from './components/App';
 
-const store = createStore(reducers);
-const root = ReactDOM.createRoot(document.getElementById('root')); // 새로운 root 생성
+// Bootstrap CSS 및 JS import
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
+// React 18의 새로운 방식으로 루트 생성 및 렌더링
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Provider store={store}>
+  <BrowserRouter>
     <App />
-  </Provider>
+  </BrowserRouter>
 );
