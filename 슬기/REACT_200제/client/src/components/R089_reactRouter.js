@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom"; // Link를 사용하는 경우
+import { Link } from "react-router-dom";
 
 class R089_reactRouter extends Component {
   render() {
