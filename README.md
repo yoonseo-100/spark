@@ -4,7 +4,7 @@ Next.js 13, Next Auth, React,Typescript, React Query, React Hook Forms, Zod, Tai
 AWS RDS, Postgres and Prisma were replaced with DynamoDB and Dynamo DB Toolbox as part of cost optimizations as of Dec 26, 2023.  
 
 # Website URL (will be updated with the domain url soon)
-https://www.heliosadmissions.com/
+https://www.spark_edu.com/
 
 # Env Variables
 NEXTAUTH_URL= http://localhost:3000  
