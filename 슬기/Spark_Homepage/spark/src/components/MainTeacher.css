@@ -1,0 +1,25 @@
+.main-teacher {
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f8f6;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .main-teacher-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+  
+  .teacher-info h3 {
+    font-size: 1.5rem;
+    color: #5a5a5a;
+  }
+  
+  .teacher-info p {
+    font-size: 1rem;
+    color: #777;
+  }
+  
