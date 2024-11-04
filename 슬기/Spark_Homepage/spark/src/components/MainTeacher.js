@@ -14,7 +14,7 @@ function MainTeacher() {
   return (
     <div className="main-teacher">
       <h2 className="main-teacher-title">대표강사 소개</h2>
-      <Carousel interval={3000} controls={false} indicators={false}> {/* 자동 슬라이딩 설정 */}
+      <Carousel interval={3000} controls={false} indicators={false}>
         {teachers.map((teacher, index) => (
           <Carousel.Item key={index}>
             <div className="teacher-info">
