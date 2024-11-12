@@ -1,33 +1,39 @@
 import React, { Component } from 'react';
 import './App.css';
 import Loading from './Component/Loading';
-import Head from './Component/Common/Header/Head'; // 경로 확인 필요
-import Header from './Component/Common/Header/Header'; // 경로 확인 필요
+import Head from './Component/Common/Header/Head';
+import Header from './Component/Common/Header/Header';
 import Footer from './Component/Common/Footer/Footer';
+import Back from './Component/Common/Back/Back';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: true,
-      language: 'EN', // 초기 언어는 영어로 설정
+      language: 'EN',
     };
   }
 
   componentDidMount() {
-    // 5초 후에 로딩을 종료
+    // 5초 후에 자동으로 로딩을 종료하는 타이머 설정
     this.timer = setTimeout(() => {
       this.setState({ isLoading: false });
     }, 5000);
   }
 
   componentWillUnmount() {
-    // 컴포넌트가 언마운트될 때 타이머 정리
+    // 타이머 정리
     clearTimeout(this.timer);
   }
 
   handleLanguageChange = (language) => {
     this.setState({ language });
+  };
+
+  handleFinishLoading = () => {
+    // 로딩 상태를 false로 변경
+    this.setState({ isLoading: false });
   };
 
   render() {
@@ -36,13 +42,14 @@ class App extends Component {
     return (
       <div className="App">
         {isLoading ? (
-          <Loading />
+          <Loading onFinishLoading={this.handleFinishLoading} />
         ) : (
           <>
             <Head onLanguageChange={this.handleLanguageChange} />
             <Header language={language} />
+            <Back title="Homepage" />
             <h1>Homepage</h1>
-            <Footer /> {/* Footer 컴포넌트 추가 */}
+            <Footer />
           </>
         )}
       </div>

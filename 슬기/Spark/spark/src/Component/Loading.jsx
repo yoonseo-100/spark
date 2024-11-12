@@ -3,6 +3,11 @@ import './Loading.css';
 import logo from './Spark.png'; // 이미지 경로가 정확한지 확인하세요.
 
 class Loading extends Component {
+  handleButtonClick = () => {
+    // 부모 컴포넌트(App.js)의 콜백 함수를 호출하여 로딩 상태를 false로 변경
+    this.props.onFinishLoading();
+  };
+
   render() {
     return (
       <div className="Loading">
@@ -11,14 +16,12 @@ class Loading extends Component {
           <p>
             Welcome <code> to </code> SPARK EDU
           </p>
-          <a
-            className="Loading-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            className="Loading-button"
+            onClick={this.handleButtonClick}
           >
-            Learn More {/* <More>에서 "More"로 변경하여 올바른 텍스트로 수정 */}
-          </a>
+            Go To Page
+          </button>
         </header>
       </div>
     );
