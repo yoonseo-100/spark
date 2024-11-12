@@ -3,6 +3,7 @@ import './App.css';
 import Loading from './Component/Loading';
 import Head from './Component/Common/Header/Head'; // 경로 확인 필요
 import Header from './Component/Common/Header/Header'; // 경로 확인 필요
+import Footer from './Component/Common/Footer/Footer';
 
 class App extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class App extends Component {
             <Head onLanguageChange={this.handleLanguageChange} />
             <Header language={language} />
             <h1>Homepage</h1>
+            <Footer /> {/* Footer 컴포넌트 추가 */}
           </>
         )}
       </div>
