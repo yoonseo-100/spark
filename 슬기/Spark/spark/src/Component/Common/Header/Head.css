@@ -1,0 +1,21 @@
+.head-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .head-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .head-button:hover {
+    background-color: #45a049;
+  }
+  
