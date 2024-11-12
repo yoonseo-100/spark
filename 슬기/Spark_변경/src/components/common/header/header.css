@@ -1,10 +1,10 @@
 /*--------head------------*/
 .head {
   padding: 20px 0;
-  color: #fff;
+  color: #7d21e7;
 }
 .logo h1 {
-  font-size: 35px;
+  font-size: 60px;
   font-weight: 900;
 }
 .head .icon {
@@ -26,7 +26,7 @@ header ul {
   padding: 30px 20px;
 }
 header ul li a {
-  color: #fff;
+  color: #610967;
   font-weight: 500;
   transition: 0.5s;
 }

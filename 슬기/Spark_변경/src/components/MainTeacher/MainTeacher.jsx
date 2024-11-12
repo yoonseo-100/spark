@@ -1,17 +1,17 @@
 import React from "react"
 import Back from "../common/back/Back"
-import TeamCard from "./TeamCard"
-import "./team.css"
+import MainTeacherCard from "./MainTeacherCard"
+import "./MainTeacher.css"
 import Awrapper from "../about/Awrapper"
 import "../about/about.css"
 
-const Team = () => {
+const MainTeacher = () => {
   return (
     <>
-      <Back title='Team' />
-      <section className='team padding'>
+      <Back title='MainTeacher' />
+      <section className='MainTeacher padding'>
         <div className='container grid'>
-          <TeamCard />
+          <MainTeacherCard/>
         </div>
       </section>
       <Awrapper />
@@ -19,4 +19,4 @@ const Team = () => {
   )
 }
 
-export default Team
+export default MainTeacher
