@@ -7,6 +7,7 @@ function Head() {
       <button className="head-button">Login</button>
       <button className="head-button">Sign Up</button>
       <button className="head-button">Profile</button>
+      <button className="head-button">Language</button>
     </div>
   );
 }
