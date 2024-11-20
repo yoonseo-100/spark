@@ -5,6 +5,7 @@
   padding: 10px 20px;
   background-color: #333;
   color: white;
+  position: relative; /* 세부 메뉴와의 관계 설정 */
 }
 
 .navbar-logo {
@@ -21,11 +22,49 @@
   padding: 0;
 }
 
+.navbar-links .navbar-item {
+  position: relative; /* 서브메뉴를 위한 상대 위치 */
+}
+
 .navbar-links li a {
   color: white;
   text-decoration: none;
 }
 
 .navbar-links li a:hover {
+  text-decoration: underline;
+}
+
+.menu-icon {
+  font-size: 2em; /* 크기를 두 배로 */
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submenu {
+  display: block;
+  position: absolute;
+  top: 100%; /* 부모 요소 바로 아래 */
+  left: 0;
+  background-color: #444;
+  list-style: none;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.submenu li {
+  margin: 5px 0;
+}
+
+.submenu li a {
+  color: white;
+  text-decoration: none;
+}
+
+.submenu li a:hover {
   text-decoration: underline;
 }
