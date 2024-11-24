@@ -5,7 +5,6 @@
   padding: 10px 20px;
   background-color: #333;
   color: white;
-  position: relative; /* 세부 메뉴와의 관계 설정 */
 }
 
 .navbar-logo {
@@ -22,49 +21,45 @@
   padding: 0;
 }
 
-.navbar-links .navbar-item {
-  position: relative; /* 서브메뉴를 위한 상대 위치 */
-}
-
 .navbar-links li a {
   color: white;
   text-decoration: none;
 }
 
-.navbar-links li a:hover {
-  text-decoration: underline;
-}
-
 .menu-icon {
-  font-size: 2em; /* 크기를 두 배로 */
+  font-size: 2em;
   color: white;
   cursor: pointer;
+}
+
+.overlay-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 70%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  color: white;
+  z-index: 2000;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.submenu {
-  display: block;
-  position: absolute;
-  top: 100%; /* 부모 요소 바로 아래 */
-  left: 0;
-  background-color: #444;
+.overlay-content {
+  width: 90%;
+  text-align: center;
+}
+
+.menu-items {
   list-style: none;
-  padding: 10px;
-  border-radius: 5px;
-  z-index: 1000;
+  padding: 0;
+  margin: 0;
 }
 
-.submenu li {
-  margin: 5px 0;
-}
-
-.submenu li a {
+.menu-items li {
+  margin: 15px 0;
+  cursor: pointer;
   color: white;
-  text-decoration: none;
-}
-
-.submenu li a:hover {
-  text-decoration: underline;
+  font-size: 1.2em;
 }

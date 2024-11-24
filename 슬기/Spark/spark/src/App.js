@@ -4,7 +4,14 @@ import Loading from './Component/Loading';
 import Head from './Component/Common/Header/Head';
 import Header from './Component/Common/Header/Header';
 import Footer from './Component/Common/Footer/Footer';
-import Back from './Component/Common/Back/Back';
+
+import Home from './Component/Pages/Home';
+import About from './Component/Pages/About';
+import MainTeacher from './Component/Pages/MainTeacher';
+import Lecture from './Component/Pages/Lecture';
+import Purchase from './Component/Pages/Purchase';
+import Classroom from './Component/Pages/Classroom';
+import Contact from './Component/Pages/Contact';
 
 class App extends Component {
   constructor(props) {
@@ -12,18 +19,17 @@ class App extends Component {
     this.state = {
       isLoading: true,
       language: 'EN',
+      currentPage: 'Home', // 초기 페이지
     };
   }
 
   componentDidMount() {
-    // 5초 후에 자동으로 로딩을 종료하는 타이머 설정
     this.timer = setTimeout(() => {
       this.setState({ isLoading: false });
     }, 5000);
   }
 
   componentWillUnmount() {
-    // 타이머 정리
     clearTimeout(this.timer);
   }
 
@@ -31,24 +37,50 @@ class App extends Component {
     this.setState({ language });
   };
 
-  handleFinishLoading = () => {
-    // 로딩 상태를 false로 변경
-    this.setState({ isLoading: false });
+  navigateToPage = (page) => {
+    this.setState({ currentPage: page });
   };
 
   render() {
-    const { isLoading, language } = this.state;
+    const { isLoading, language, currentPage } = this.state;
+
+    let CurrentPageComponent;
+    switch (currentPage) {
+      case 'Home':
+        CurrentPageComponent = <Home />;
+        break;
+      case 'About':
+        CurrentPageComponent = <About />;
+        break;
+      case 'MainTeacher':
+        CurrentPageComponent = <MainTeacher />;
+        break;
+      case 'Lecture':
+        CurrentPageComponent = <Lecture />;
+        break;
+      case 'Purchase':
+        CurrentPageComponent = <Purchase />;
+        break;
+      case 'Classroom':
+        CurrentPageComponent = <Classroom />;
+        break;
+      case 'Contact':
+        CurrentPageComponent = <Contact />;
+        break;
+      default:
+        CurrentPageComponent = <Home />;
+    }
 
     return (
       <div className="App">
         {isLoading ? (
-          <Loading onFinishLoading={this.handleFinishLoading} />
+          <Loading />
         ) : (
           <>
             <Head onLanguageChange={this.handleLanguageChange} />
-            <Header language={language} />
-            <Back title="Homepage" />
-            <h1>Homepage</h1>
+            {/* navigateToPage 함수 전달 */}
+            <Header language={language} navigateToPage={this.navigateToPage} />
+            <div className="content">{CurrentPageComponent}</div>
             <Footer />
           </>
         )}
