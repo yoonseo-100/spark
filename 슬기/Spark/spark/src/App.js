@@ -5,13 +5,13 @@ import Head from './Component/Common/Header/Head';
 import Header from './Component/Common/Header/Header';
 import Footer from './Component/Common/Footer/Footer';
 
-import Home from './Component/Pages/Home';
-import About from './Component/Pages/About';
-import MainTeacher from './Component/Pages/MainTeacher';
-import Lecture from './Component/Pages/Lecture';
-import Purchase from './Component/Pages/Purchase';
-import Classroom from './Component/Pages/Classroom';
-import Contact from './Component/Pages/Contact';
+import Home from './Component/Pages/Home/Home';
+import About from './Component/Pages/About/About';
+import MainTeacher from './Component/Pages/MainTeacher/MainTeacher';
+import Lecture from './Component/Pages/Lecture/Lecture';
+import Purchase from './Component/Pages/Purchase/Purchase';
+import Classroom from './Component/Pages/Classroom/Classroom';
+import Contact from './Component/Pages/Contact/Contact';
 
 class App extends Component {
   constructor(props) {
