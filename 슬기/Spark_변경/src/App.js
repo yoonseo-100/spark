@@ -1,32 +1,92 @@
-import "./App.css"
-import Header from "./components/common/header/Header"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import About from "./components/about/About"
-import CourseHome from "./components/allcourses/CourseHome"
-import MainTeacher from "./components/MainTeacher/MainTeacher"
-import Pricing from "./components/pricing/Pricing"
-import Blog from "./components/blog/Blog"
-import Contact from "./components/contact/Contact"
-import Footer from "./components/common/footer/Footer"
-import Home from "./components/home/Home"
-function App() {
-  return (
-    <>
-      <Router>
-        <Header />
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/about' component={About} />
-          <Route exact path='/courses' component={CourseHome} />
-          <Route exact path='/MainTeacher' component={MainTeacher} />
-          <Route exact path='/pricing' component={Pricing} />
-          <Route exact path='/journal' component={Blog} />
-          <Route exact path='/contact' component={Contact} />
-        </Switch>
-        <Footer />
-      </Router>
-    </>
-  )
+import React, { Component } from 'react';
+import './App.css';
+import Loading from './Component/Loading';
+import Head from './Component/Common/Header/Head';
+import Header from './Component/Common/Header/Header';
+import Footer from './Component/Common/Footer/Footer';
+
+import Home from './Component/Pages/Home/Home';
+import About from './Component/Pages/About/About';
+import MainTeacher from './Component/Pages/MainTeacher/MainTeacher';
+import Lecture from './Component/Pages/Lecture/Lecture';
+import Purchase from './Component/Pages/Purchase/Purchase';
+import Classroom from './Component/Pages/Classroom/Classroom';
+import Contact from './Component/Pages/Contact/Contact';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+      language: 'EN',
+      currentPage: 'Home', // 초기 페이지
+    };
+  }
+
+  componentDidMount() {
+    this.timer = setTimeout(() => {
+      this.setState({ isLoading: false });
+    }, 5000);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
+
+  handleLanguageChange = (language) => {
+    this.setState({ language });
+  };
+
+  navigateToPage = (page) => {
+    this.setState({ currentPage: page });
+  };
+
+  render() {
+    const { isLoading, language, currentPage } = this.state;
+
+    let CurrentPageComponent;
+    switch (currentPage) {
+      case 'Home':
+        CurrentPageComponent = <Home />;
+        break;
+      case 'About':
+        CurrentPageComponent = <About />;
+        break;
+      case 'MainTeacher':
+        CurrentPageComponent = <MainTeacher />;
+        break;
+      case 'Lecture':
+        CurrentPageComponent = <Lecture />;
+        break;
+      case 'Purchase':
+        CurrentPageComponent = <Purchase />;
+        break;
+      case 'Classroom':
+        CurrentPageComponent = <Classroom />;
+        break;
+      case 'Contact':
+        CurrentPageComponent = <Contact />;
+        break;
+      default:
+        CurrentPageComponent = <Home />;
+    }
+
+    return (
+      <div className="App">
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <>
+            <Head onLanguageChange={this.handleLanguageChange} />
+            {/* navigateToPage 함수 전달 */}
+            <Header language={language} navigateToPage={this.navigateToPage} />
+            <div className="content">{CurrentPageComponent}</div>
+            <Footer />
+          </>
+        )}
+      </div>
+    );
+  }
 }
 
-export default App
+export default App;

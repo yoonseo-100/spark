@@ -1,0 +1,42 @@
+.Loading {
+    background-color: rgb(19, 53, 190);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .Loading-header {
+    text-align: center;
+  }
+  
+  .Loading-header p {
+    font-size: 2em; /* 글씨 크기를 현재 크기의 2배로 설정 */
+    font-weight: 800;
+  }
+
+  .Loading-header a {
+    font-size: 1.2em;
+    color: yellow;
+  }
+
+  .Loading-logo {
+    height: 450px; /* 로고 크기는 필요에 따라 조정 */
+    animation: pulse 2s infinite ease-in-out;
+  }
+  
+  @keyframes pulse {
+    0% {
+      opacity: 0.5;
+      transform: scale(0.9);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0.5;
+      transform: scale(0.9);
+    }
+  }
+  
