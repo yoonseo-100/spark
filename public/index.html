@@ -1,19 +1,913 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Web site created using create-react-app" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>스파크 에듀 - 코딩 강사를 위한 All-in-One 플랫폼</title>
+    <style>
+      :root {
+        --primary: #ff9500;
+        --secondary: #ffb800;
+        --accent: #ff6b00;
+        --light-yellow: #fff5e0;
+        --dark: #333333;
+        --light: #fffaf0;
+        --gray: #666666;
+      }
 
-    <title>React App</title>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Pretendard", sans-serif;
+      }
+
+      body {
+        background-color: var(--light);
+        color: var(--dark);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header Styles */
+      header {
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo img {
+        height: 60px;
+        margin-right: 10px;
+      }
+
+      .logo h1 {
+        font-size: 24px;
+        color: var(--primary);
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+      }
+
+      nav ul li {
+        margin-left: 30px;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      nav ul li a:hover {
+        color: var(--primary);
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 15px;
+      }
+
+      .btn {
+        padding: 8px 20px;
+        border-radius: 6px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background-color: #e68600;
+      }
+
+      .btn-secondary {
+        background-color: white;
+        color: var(--primary);
+        border: 1px solid var(--primary);
+      }
+
+      .btn-secondary:hover {
+        background-color: #fff5e0;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding-top: 120px;
+        padding-bottom: 80px;
+        background: linear-gradient(135deg, #ff9500 0%, #ffb800 100%);
+        color: white;
+      }
+
+      .hero-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .hero-text {
+        flex: 1;
+        max-width: 600px;
+      }
+
+      .hero-text h2 {
+        font-size: 48px;
+        line-height: 1.2;
+        margin-bottom: 20px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .hero-text p {
+        font-size: 18px;
+        margin-bottom: 30px;
+        opacity: 0.9;
+      }
+
+      .hero-image {
+        flex: 1;
+        text-align: right;
+      }
+
+      .hero-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Features Section */
+      .features {
+        padding: 100px 0;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-title h3 {
+        font-size: 36px;
+        color: var(--dark);
+        margin-bottom: 15px;
+      }
+
+      .section-title p {
+        font-size: 18px;
+        color: var(--gray);
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .feature-card {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .feature-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--secondary);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .feature-icon i {
+        font-size: 24px;
+        color: white;
+      }
+
+      .feature-card h4 {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: var(--dark);
+      }
+
+      .feature-card p {
+        color: var(--gray);
+        line-height: 1.6;
+      }
+
+      /* How It Works Section */
+      .how-it-works {
+        padding: 100px 0;
+        background-color: var(--light-yellow);
+      }
+
+      .steps-container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 900px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .steps-container::before {
+        content: "";
+        position: absolute;
+        top: 70px;
+        left: 50px;
+        right: 50px;
+        height: 3px;
+        background-color: var(--secondary);
+        z-index: 1;
+      }
+
+      .step {
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        flex: 1;
+      }
+
+      .step-number {
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0 auto 20px;
+      }
+
+      .step h4 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .step p {
+        font-size: 14px;
+        color: var(--gray);
+      }
+
+      /* Pricing Section */
+      .pricing {
+        padding: 100px 0;
+      }
+
+      .pricing-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 60px;
+        flex-wrap: wrap;
+      }
+
+      .pricing-card {
+        background: white;
+        border-radius: 12px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        width: 100%;
+        max-width: 320px;
+        transition: transform 0.3s;
+      }
+
+      .pricing-card:hover {
+        transform: scale(1.03);
+      }
+
+      .pricing-card.featured {
+        border: 2px solid var(--primary);
+        position: relative;
+      }
+
+      .pricing-card.featured::before {
+        content: "인기";
+        position: absolute;
+        top: -15px;
+        right: 30px;
+        background: var(--accent);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .pricing-type {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: var(--dark);
+      }
+
+      .pricing-price {
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 20px;
+      }
+
+      .pricing-price span {
+        font-size: 16px;
+        color: var(--gray);
+      }
+
+      .pricing-features {
+        list-style: none;
+        margin-bottom: 30px;
+      }
+
+      .pricing-features li {
+        padding: 8px 0;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .pricing-features i {
+        color: var(--primary);
+        margin-right: 10px;
+        margin-top: 4px;
+      }
+
+      /* Testimonials Section */
+      .testimonials {
+        padding: 100px 0;
+        background-color: var(--light-yellow);
+      }
+
+      .testimonials-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .testimonial-card {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+
+      .testimonial-text {
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 20px;
+        position: relative;
+        padding-left: 25px;
+      }
+
+      .testimonial-text::before {
+        content: '"';
+        font-size: 60px;
+        color: var(--secondary);
+        position: absolute;
+        top: -20px;
+        left: -5px;
+        font-family: serif;
+        opacity: 0.5;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+      }
+
+      .testimonial-author img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+      }
+
+      .author-info h5 {
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      .author-info p {
+        font-size: 14px;
+        color: var(--gray);
+      }
+
+      /* CTA Section */
+      .cta {
+        padding: 100px 0;
+        background: linear-gradient(135deg, #ff9500 0%, #ffb800 100%);
+        color: white;
+        text-align: center;
+      }
+
+      .cta h3 {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+
+      .cta p {
+        font-size: 18px;
+        max-width: 700px;
+        margin: 0 auto 30px;
+        opacity: 0.9;
+      }
+
+      .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .cta .btn-secondary {
+        background-color: white;
+        color: var(--primary);
+      }
+
+      .cta .btn-secondary:hover {
+        background-color: #f5f5f5;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--dark);
+        color: white;
+        padding: 60px 0 30px;
+      }
+
+      .footer-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-logo {
+        margin-bottom: 20px;
+      }
+
+      .footer-logo img {
+        height: 50px;
+      }
+
+      .footer-about p {
+        font-size: 14px;
+        opacity: 0.8;
+        margin-bottom: 20px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-links a {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+      }
+
+      .social-links a:hover {
+        background-color: var(--primary);
+      }
+
+      .social-links i {
+        font-size: 16px;
+        color: white;
+      }
+
+      .footer-links h4 {
+        font-size: 16px;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .footer-links ul {
+        list-style: none;
+      }
+
+      .footer-links ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links ul li a {
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+        transition: color 0.3s;
+      }
+
+      .footer-links ul li a:hover {
+        color: white;
+      }
+
+      .copyright {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 20px;
+        text-align: center;
+        font-size: 14px;
+        opacity: 0.7;
+      }
+
+      /* Badge styles */
+      .hot-badge {
+        background-color: var(--accent);
+        color: white;
+        font-size: 12px;
+        padding: 2px 8px;
+        border-radius: 4px;
+        margin-left: 8px;
+        vertical-align: middle;
+      }
+
+      /* Plan comparison */
+      .plan-comparison {
+        margin: 20px 0;
+        font-size: 14px;
+        color: var(--accent);
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 992px) {
+        .hero-container {
+          flex-direction: column;
+        }
+
+        .hero-text,
+        .hero-image {
+          max-width: 100%;
+          text-align: center;
+        }
+
+        .hero-text {
+          margin-bottom: 40px;
+        }
+
+        .features-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .pricing-container {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header-container {
+          flex-direction: column;
+        }
+
+        nav ul {
+          margin-top: 20px;
+        }
+
+        nav ul li {
+          margin: 0 10px;
+        }
+
+        .hero-text h2 {
+          font-size: 36px;
+        }
+
+        .steps-container {
+          flex-direction: column;
+        }
+
+        .steps-container::before {
+          display: none;
+        }
+
+        .step {
+          margin-bottom: 40px;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 480px) {
+        nav ul {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        nav ul li {
+          margin-bottom: 10px;
+        }
+
+        .cta-buttons {
+          flex-direction: column;
+        }
+      }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Korean font - Pretendard -->
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css"
+    />
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <!-- Header -->
+    <header>
+      <div class="container header-container">
+        <div class="logo">
+          <img src="./images/sparklogo.jpeg" alt="스파크 에듀 로고" />
+          <h1>스파크 에듀</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#features">서비스 소개</a></li>
+            <li><a href="#how-it-works">이용 방법</a></li>
+            <li><a href="#pricing">요금제</a></li>
+            <li><a href="#testimonials">후기</a></li>
+            <li><a href="#faq">자주 묻는 질문</a></li>
+          </ul>
+        </nav>
+        <div class="cta-buttons">
+          <a href="#" class="btn btn-secondary">로그인</a>
+          <a href="#" class="btn btn-primary">회원가입</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-container">
+        <div class="hero-text">
+          <h2>AI 기반 코딩 강사를 위한 All-in-One 플랫폼</h2>
+          <p>
+            체계적인 교육 시스템과 커리큘럼으로 신뢰할 수 있는 코딩 전문가로
+            성장하세요. 강사 매칭, 교육 자료, 커뮤니티까지 모든 것을 제공합니다.
+          </p>
+          <div class="cta-buttons">
+            <a href="#" class="btn btn-primary">지금 시작하기</a>
+            <a href="#how-it-works" class="btn btn-secondary"
+              >서비스 알아보기</a
+            >
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="./images/back.webp" alt="코딩 교육 이미지" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+      <div class="container">
+        <div class="section-title">
+          <h3>스파크 에듀의 특별한 기능</h3>
+          <p>
+            AI 시스템을 활용한 맞춤형 서비스로 코딩 강사의 성장을 지원합니다
+          </p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <h4>AI 기반 강사 매칭</h4>
+            <p>
+              AI가 강사의 역량과 관심사를 분석하여 최적의 교육 분야와 기관을
+              매칭해 드립니다.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <h4>체계적인 교육 커리큘럼</h4>
+            <p>
+              검증된 교육 자료와 커리큘럼으로 전문성을 갖춘 코딩 강사로 성장할
+              수 있습니다.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h4>강사 커뮤니티</h4>
+            <p>
+              같은 목표를 가진 강사들과 소통하고 정보를 공유할 수 있는
+              커뮤니티를 제공합니다.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h4>공정한 수익 구조</h4>
+            <p>
+              합리적인 수수료와 투명한 정산 시스템으로 강사의 권리를 보장합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+      <div class="container">
+        <div class="section-title">
+          <h3>이용 방법</h3>
+          <p>스파크 에듀와 함께 전문 코딩 강사로 성장하는 과정</p>
+        </div>
+        <div class="steps-container">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h4>가입 및 프로필 작성</h4>
+            <p>경력과 관심 분야를 입력하면 AI가 분석합니다</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h4>맞춤형 교육 과정</h4>
+            <p>AI 추천 교육과 자료로 역량을 키웁니다</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h4>실습 기회 제공</h4>
+            <p>실제 학생들과 함께 수업을 진행합니다</p>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <h4>기관 매칭</h4>
+            <p>검증된 강사로 취업 기회를 얻습니다</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+      <div class="container">
+        <div class="section-title">
+          <h3>요금제 안내</h3>
+          <p>나에게 맞는 구독 서비스로 다양한 혜택을 누려보세요</p>
+        </div>
+        <div class="pricing-container">
+          <div class="pricing-card">
+            <div class="pricing-type">베이직</div>
+            <div class="pricing-price">무료</div>
+            <ul class="pricing-features">
+              <li><i class="fas fa-check"></i> AI 강사 성향 테스트 (3회)</li>
+              <li><i class="fas fa-check"></i> 기본 커뮤니티 이용</li>
+              <li><i class="fas fa-check"></i> 일부 구인구직 정보 열람</li>
+              <li><i class="fas fa-check"></i> 이력서 컨설팅 (1회)</li>
+              <li><i class="fas fa-check"></i> 교구 대여 10% 할인</li>
+              <li><i class="fas fa-times"></i> 취업 정보 제공</li>
+            </ul>
+            <a href="#" class="btn btn-secondary">시작하기</a>
+          </div>
+          <div class="pricing-card">
+            <div class="pricing-type">스탠다드</div>
+            <div class="pricing-price">9,900원<span>/월</span></div>
+            <ul class="pricing-features">
+              <li><i class="fas fa-check"></i> AI 강사 성향 테스트 (무제한)</li>
+              <li><i class="fas fa-check"></i> 강의 자료 3과목 무료</li>
+              <li><i class="fas fa-check"></i> 완전한 구인구직 정보 열람</li>
+              <li><i class="fas fa-check"></i> 이력서 컨설팅 (3회)</li>
+              <li><i class="fas fa-check"></i> 교구 대여 30% 할인</li>
+              <li><i class="fas fa-check"></i> 취업 정보 제공</li>
+            </ul>
+            <p class="plan-comparison">베이직 대비 3배 더 많은 혜택</p>
+            <a href="#" class="btn btn-secondary">가입하기</a>
+          </div>
+          <div class="pricing-card featured">
+            <div class="pricing-type">프리미엄</div>
+            <div class="pricing-price">19,900원<span>/월</span></div>
+            <ul class="pricing-features">
+              <li><i class="fas fa-check"></i> AI 강사 성향 테스트 (무제한)</li>
+              <li>
+                <i class="fas fa-check"></i>
+                <strong>강의 자료 무제한 이용</strong>
+                <span class="hot-badge">인기</span>
+              </li>
+              <li><i class="fas fa-check"></i> 구인구직 정보 우선 열람</li>
+              <li><i class="fas fa-check"></i> 이력서 컨설팅 (무제한)</li>
+              <li><i class="fas fa-check"></i> 교구 대여 50% 할인</li>
+              <li><i class="fas fa-check"></i> 우선 취업 추천</li>
+              <li><i class="fas fa-check"></i> 맞춤형 강의 계획 지원</li>
+            </ul>
+            <a href="#" class="btn btn-primary">가입하기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+        <div class="section-title">
+          <h3>강사들의 후기</h3>
+          <p>스파크 에듀와 함께 성장한 강사들의 이야기</p>
+        </div>
+        <div class="testimonials-container">
+          <div class="testimonial-card">
+            <div class="testimonial-text">
+              "스파크 에듀 덕분에 전문성을 키우고 좋은 학교에 취업할 수
+              있었습니다. AI 추천 커리큘럼이 정말 큰 도움이 되었고, 강사
+              커뮤니티를 통해 많은 정보도 얻을 수 있었어요."
+            </div>
+            <div class="testimonial-author">
+              <img src="/api/placeholder/50/50" alt="김지훈" />
+              <div class="author-info">
+                <h5>김지훈</h5>
+                <p>코딩 강사 | 서울 소재 초등학교</p>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-text">
+              "다른 플랫폼에서는 50%의 수수료를 가져갔지만, 스파크 에듀는
+              합리적인 수수료와 함께 실질적인 교육 지원까지 해주어 만족도가 매우
+              높습니다."
+            </div>
+            <div class="testimonial-author">
+              <img src="/api/placeholder/50/50" alt="이미영" />
+              <div class="author-info">
+                <h5>이미영</h5>
+                <p>파이썬 전문 강사 | 프리랜서</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+      <div class="container">
+        <h3>지금 바로 시작하세요</h3>
+        <p>
+          AI 기반 맞춤형 교육과 취업 지원으로 신뢰받는 코딩 강사로 성장할 수
+          있습니다.
+        </p>
+        <div class="cta-buttons">
+          <a href="#" class="btn btn-secondary">무료로 시작하기</a>
+          <a href="#" class="btn btn-primary">프리미엄 가입하기</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-container">
+          <div class="footer-about">
+            <div class="footer-logo">
+              <img src="./images/sparklogo.jpeg" alt="스파크 에듀 로고" />
+            </div>
+            <p>AI 기반 코딩 강사 교육 및 매칭 플랫폼</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
