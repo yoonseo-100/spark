@@ -480,7 +480,7 @@
       }
 
       .footer-logo img {
-        height: 50px;
+        height: 80px;
       }
 
       .footer-about p {
@@ -537,6 +537,11 @@
 
       .footer-links ul li a:hover {
         color: white;
+      }
+
+      .footer-links ul li a strong {
+        color: var(--primary);
+        font-weight: 600;
       }
 
       .copyright {
@@ -623,6 +628,10 @@
         .features-grid {
           grid-template-columns: 1fr;
         }
+
+        .footer-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
       }
 
       @media (max-width: 480px) {
@@ -638,6 +647,55 @@
         .cta-buttons {
           flex-direction: column;
         }
+
+        .footer-container {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .company-info {
+        margin: 20px 0;
+      }
+
+      .company-info p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 8px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .social-links a {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+      }
+
+      .social-links a:hover {
+        background-color: var(--primary);
+      }
+
+      .social-links i {
+        font-size: 16px;
+        color: white;
+      }
+
+      .copyright {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 20px;
+        text-align: center;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 30px;
       }
     </style>
     <!-- Font Awesome for icons -->
@@ -658,7 +716,7 @@
     <header>
       <div class="container header-container">
         <div class="logo">
-          <img src="./images/sparklogo.jpeg" alt="스파크 에듀 로고" />
+          <img src="./images/spark.png" alt="스파크 에듀 로고" />
           <h1>스파크 에듀</h1>
         </div>
         <nav>
@@ -902,10 +960,56 @@
         <div class="footer-container">
           <div class="footer-about">
             <div class="footer-logo">
-              <img src="./images/sparklogo.jpeg" alt="스파크 에듀 로고" />
+              <img src="./images/spark.png" alt="스파크 에듀 로고" />
             </div>
             <p>AI 기반 코딩 강사 교육 및 매칭 플랫폼</p>
+            <div class="company-info">
+              <p>(주)스파크에듀</p>
+              <p>CEO: 김현희, CTO: 백윤서</p>
+              <p>사업자등록번호: 123-45-67890</p>
+              <p>통신판매업신고: 제2024-서울강남-1234호</p>
+              <p>주소: 서울특별시 강남구 테헤란로 123, 4층</p>
+              <p>이메일: spark_edu2024@gmail.com</p>
+              <p>고객센터: 1544-1234 (평일 10:00-18:00)</p>
+            </div>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-blog"></i></a>
+            </div>
           </div>
+          <div class="footer-links">
+            <h4>회사 소개</h4>
+            <ul>
+              <li><a href="#">스파크에듀 소개</a></li>
+              <li><a href="#">인재채용</a></li>
+              <li><a href="#">보도자료</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>고객 지원</h4>
+            <ul>
+              <li><a href="#">자주 묻는 질문</a></li>
+              <li><a href="#">고객센터</a></li>
+              <li><a href="#">강사 지원</a></li>
+              <li><a href="#">교육기관 제휴</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>약관 및 정책</h4>
+            <ul>
+              <li><a href="#">이용약관</a></li>
+              <li>
+                <a href="#"><strong>개인정보처리방침</strong></a>
+              </li>
+
+              <li><a href="#">서비스 정책</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>© 2024 스파크에듀. All rights reserved.</p>
         </div>
       </div>
     </footer>
